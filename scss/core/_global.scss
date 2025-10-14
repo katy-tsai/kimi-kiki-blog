@@ -1,0 +1,110 @@
+/* ============================================
+   Global Styles
+   ============================================ */
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  transition: background-color var(--transition-base) var(--transition-timing-ease),
+              color var(--transition-base) var(--transition-timing-ease);
+}
+
+/* Main content area */
+.main-content {
+  min-height: calc(100vh - var(--navbar-height) - 200px);
+  padding-top: var(--navbar-height);
+}
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: var(--max-width-page);
+  margin: 0 auto;
+  padding: 0 var(--spacing-4);
+
+  @media (min-width: 640px) {
+    padding: 0 var(--spacing-6);
+  }
+
+  @media (min-width: 1024px) {
+    padding: 0 var(--spacing-8);
+  }
+}
+
+/* Content wrapper */
+.content-wrapper {
+  max-width: var(--max-width-content);
+  margin: 0 auto;
+}
+
+/* Section spacing */
+section {
+  padding: var(--spacing-12) 0;
+
+  @media (min-width: 768px) {
+    padding: var(--spacing-16) 0;
+  }
+}
+
+/* Selection */
+::selection {
+  background-color: var(--color-brand-primary-light);
+  color: var(--color-text-inverse);
+}
+
+/* Focus outline */
+*:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+/* Scrollbar styles (Webkit) */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-secondary);
+  border-radius: var(--radius-base);
+
+  &:hover {
+    background: var(--color-border-hover);
+  }
+}
+
+/* Loading spinner utility */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-spinner {
+  animation: spin 1s linear infinite;
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn var(--transition-base) var(--transition-timing-ease);
+}

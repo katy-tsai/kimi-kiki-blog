@@ -1,0 +1,117 @@
+/* ============================================
+   Article Card Component
+   ============================================ */
+
+.article-card {
+  background-color: var(--color-bg-card);
+  border-radius: var(--card-radius);
+  border: 1px solid var(--color-border-primary);
+  padding: var(--card-padding-base);
+  transition: all var(--transition-base) var(--transition-timing-ease);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-brand-primary);
+  }
+
+  &__link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    cursor: pointer; // Reason: Explicit pointer cursor for the entire card link
+  }
+
+  &__title {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-3);
+    line-height: var(--line-height-tight);
+    transition: color var(--transition-base) var(--transition-timing-ease);
+
+    .article-card:hover & {
+      color: var(--color-brand-primary);
+    }
+
+    @media (max-width: 640px) {
+      font-size: var(--font-size-xl);
+    }
+  }
+
+  &__excerpt {
+    font-size: var(--font-size-base);
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--spacing-4);
+    flex: 1;
+
+    // Reason: Clamp text to 3 lines with ellipsis
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  // Reason: Meta section with tags and info (date/views) like in prototype
+  &__meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-3);
+    margin-top: auto;
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-2);
+  }
+
+  &__info {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-4);
+    color: var(--color-text-tertiary);
+    font-size: var(--font-size-sm);
+  }
+
+  &__views,
+  &__date {
+    color: var(--color-text-tertiary);
+    font-size: var(--font-size-sm);
+  }
+
+  // Featured variant
+  &--featured {
+    border: 2px solid var(--color-brand-primary);
+    background: linear-gradient(
+      135deg,
+      var(--color-bg-card) 0%,
+      var(--color-bg-secondary) 100%
+    );
+
+    &:hover {
+      box-shadow: var(--shadow-xl);
+    }
+
+    .article-card__title {
+      font-size: var(--font-size-3xl);
+
+      @media (max-width: 640px) {
+        font-size: var(--font-size-2xl);
+      }
+    }
+  }
+
+  // Responsive adjustments
+  @media (max-width: 640px) {
+    padding: var(--card-padding-sm);
+  }
+}

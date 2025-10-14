@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kimi-kiki Blog - 設計稿原型</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft JhengHei', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* 深色/淺色主題變數 */
+        body.light-mode {
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #0f172a;
+            --text-secondary: #64748b;
+            --border-color: #e2e8f0;
+            --accent-color: #3b82f6;
+            --accent-hover: #2563eb;
+            --nav-bg: #ffffff;
+            --input-bg: #f1f5f9;
+            --shadow: 0 2px 4px rgba(0,0,0,0.05);
+            --shadow-hover: 0 8px 16px rgba(0,0,0,0.1);
+        }
+
+        body.dark-mode {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --border-color: #334155;
+            --accent-color: #3b82f6;
+            --accent-hover: #2563eb;
+            --nav-bg: #1e293b;
+            --input-bg: #334155;
+            --shadow: 0 2px 4px rgba(0,0,0,0.2);
+            --shadow-hover: 0 8px 16px rgba(0,0,0,0.3);
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 64px;
+            background-color: var(--nav-bg);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        .navbar-brand {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+
+        .navbar-menu {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .nav-link {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            cursor: pointer;
+            font-size: 14px;
+            padding: 8px 0;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-color);
+        }
+
+        .nav-link.active {
+            color: var(--accent-color);
+            border-bottom-color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .navbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-input {
+            background-color: var(--input-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 8px 16px 8px 40px;
+            font-size: 14px;
+            color: var(--text-color);
+            width: 200px;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 8px;
+            cursor: pointer;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-color);
+        }
+
+        /* 主容器 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 88px 24px 24px;
+            display: flex;
+            gap: 32px;
+        }
+
+        /* 側邊欄 */
+        .sidebar {
+            width: 280px;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 24px;
+            height: fit-content;
+            position: sticky;
+            top: 88px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .sidebar.collapsed {
+            width: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .sidebar-toggle {
+            position: fixed;
+            left: 24px;
+            top: 80px;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 8px;
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 100;
+        }
+
+        .sidebar h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 32px;
+        }
+
+        .tag {
+            background-color: var(--input-bg);
+            color: var(--text-color);
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 13px;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+        }
+
+        .tag:hover {
+            border-color: var(--accent-color);
+        }
+
+        .recommended-item {
+            margin-bottom: 16px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+        }
+
+        .recommended-item:last-child {
+            border-bottom: none;
+        }
+
+        .recommended-title {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .recommended-date {
+            font-size: 12px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* 主內容 */
+        .main-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        /* Hero Banner */
+        .hero-banner {
+            background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-hover) 100%);
+            border-radius: 16px;
+            padding: 48px;
+            margin-bottom: 48px;
+            color: white;
+        }
+
+        .hero-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            opacity: 0.9;
+            margin-bottom: 24px;
+        }
+
+        .hero-btn {
+            background-color: white;
+            color: var(--accent-color);
+            border: none;
+            padding: 12px 32px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* 文章卡片 */
+        .article-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+            box-shadow: var(--shadow);
+        }
+
+        .article-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .article-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .article-excerpt {
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .article-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .article-tag {
+            background-color: rgba(59, 130, 246, 0.1);
+            color: var(--accent-color);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .article-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* 文章內容頁 */
+        .post-container {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 48px;
+            border: 1px solid var(--border-color);
+        }
+
+        .post-header {
+            margin-bottom: 24px;
+        }
+
+        .post-title {
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        .toc {
+            background-color: var(--input-bg);
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 32px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .toc h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .toc-item {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 8px;
+            cursor: pointer;
+        }
+
+        .toc-item:hover {
+            color: var(--accent-color);
+        }
+
+        .post-content {
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        .post-content h2 {
+            font-size: 32px;
+            font-weight: 600;
+            margin: 32px 0 16px;
+        }
+
+        .post-content h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin: 24px 0 12px;
+        }
+
+        .post-content p {
+            margin-bottom: 16px;
+        }
+
+        .code-block {
+            background-color: var(--input-bg);
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+            border: 1px solid var(--border-color);
+        }
+
+        .code-lang {
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        /* 分頁 */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 32px;
+        }
+
+        .pagination button {
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .pagination .active {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+        }
+
+        .pagination .inactive {
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--nav-bg);
+            border-top: 1px solid var(--border-color);
+            padding: 32px 24px;
+            margin-top: 64px;
+            text-align: center;
+        }
+
+        .footer-brand {
+            color: var(--text-color);
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .footer-text {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        /* 隱藏類 */
+        .hidden {
+            display: none;
+        }
+
+        /* 響應式 */
+        @media (max-width: 768px) {
+            .navbar-menu {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .search-box {
+                display: none;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            .sidebar-toggle {
+                display: none;
+            }
+
+            .container {
+                padding: 80px 16px 16px;
+            }
+
+            .hero-title {
+                font-size: 32px;
+            }
+
+            .hero-subtitle {
+                font-size: 16px;
+            }
+
+            .post-container {
+                padding: 24px;
+            }
+
+            .post-title {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body class="light-mode">
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div style="display: flex; align-items: center; gap: 32px;">
+            <div class="navbar-brand">kimi-kiki</div>
+            <div class="navbar-menu">
+                <button class="nav-link active" data-page="home">首頁</button>
+                <button class="nav-link" data-page="post">文章頁</button>
+                <button class="nav-link" data-page="tags">標籤頁</button>
+                <button class="nav-link" data-page="about">關於我</button>
+                <button class="nav-link" data-page="contact">聯絡我</button>
+            </div>
+        </div>
+        <div class="navbar-actions">
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" class="search-input" placeholder="搜尋文章...">
+            </div>
+            <button class="theme-toggle" onclick="toggleTheme()">
+                <span id="theme-icon">🌙</span>
+            </button>
+            <button class="mobile-menu-btn">☰</button>
+        </div>
+    </nav>
+
+    <!-- 側邊欄切換按鈕 -->
+    <button class="sidebar-toggle" onclick="toggleSidebar()">◀</button>
+
+    <!-- 主容器 -->
+    <div class="container">
+        <!-- 側邊欄 -->
+        <aside class="sidebar" id="sidebar">
+            <div>
+                <h3>🔥 熱門標籤</h3>
+                <div class="tag-list">
+                    <span class="tag">#React</span>
+                    <span class="tag">#TypeScript</span>
+                    <span class="tag">#AI</span>
+                    <span class="tag">#JavaScript</span>
+                    <span class="tag">#Frontend</span>
+                    <span class="tag">#Backend</span>
+                    <span class="tag">#DevOps</span>
+                    <span class="tag">#UI/UX</span>
+                </div>
+            </div>
+            <div>
+                <h3>📌 推薦閱讀</h3>
+                <div class="recommended-item">
+                    <div class="recommended-title">React 18 新特性完整指南</div>
+                    <div class="recommended-date">🕒 2024-10-10</div>
+                </div>
+                <div class="recommended-item">
+                    <div class="recommended-title">TypeScript 進階技巧</div>
+                    <div class="recommended-date">🕒 2024-10-08</div>
+                </div>
+                <div class="recommended-item">
+                    <div class="recommended-title">AI 輔助開發技巧</div>
+                    <div class="recommended-date">🕒 2024-10-05</div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- 主內容區 -->
+        <main class="main-content">
+            <!-- 首頁 -->
+            <div id="page-home" class="page-content">
+                <div class="hero-banner">
+                    <h1 class="hero-title">歡迎來到 kimi-kiki 的技術部落格</h1>
+                    <p class="hero-subtitle">分享程式開發、AI 技術與學習心得</p>
+                    <button class="hero-btn">開始閱讀 →</button>
+                </div>
+
+                <h2 style="font-size: 28px; font-weight: 600; margin-bottom: 24px;">📝 最新文章</h2>
+                
+                <div class="article-card">
+                    <h2 class="article-title">React 18 新特性完整指南</h2>
+                    <p class="article-excerpt">深入探討 React 18 的 Concurrent Features、Suspense 改進以及自動批次處理...</p>
+                    <div class="article-meta">
+                        <div class="article-tags">
+                            <span class="article-tag">React</span>
+                            <span class="article-tag">JavaScript</span>
+                            <span class="article-tag">Frontend</span>
+                        </div>
+                        <div class="article-info">
+                            <span>👁️ 1,234</span>
+                            <span>2024-10-10</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="article-card">
+                    <h2 class="article-title">TypeScript 進階技巧：型別體操實戰</h2>
+                    <p class="article-excerpt">學習如何使用條件類型、映射類型和模板字串類型來構建複雜的類型系統...</p>
+                    <div class="article-meta">
+                        <div class="article-tags">
+                            <span class="article-tag">TypeScript</span>
+                            <span class="article-tag">Programming</span>
+                        </div>
+                        <div class="article-info">
+                            <span>👁️ 890</span>
+                            <span>2024-10-08</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="article-card">
+                    <h2 class="article-title">AI 輔助開發：提升效率的 10 個技巧</h2>
+                    <p class="article-excerpt">如何有效使用 AI 工具來加速開發流程，從程式碼生成到除錯...</p>
+                    <div class="article-meta">
+                        <div class="article-tags">
+                            <span class="article-tag">AI</span>
+                            <span class="article-tag">Tools</span>
+                            <span class="article-tag">Productivity</span>
+                        </div>
+                        <div class="article-info">
+                            <span>👁️ 2,100</span>
+                            <span>2024-10-05</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pagination">
+                    <button class="active">1</button>
+                    <button class="inactive">2</button>
+                    <button class="inactive">3</button>
+                </div>
+            </div>
+
+            <!-- 文章頁 -->
+            <div id="page-post" class="page-content hidden">
+                <div class="post-container">
+                    <div class="post-header">
+                        <h1 class="post-title">React 18 新特性完整指南</h1>
+                        <div class="post-meta">
+                            <span>📅 2024-10-10</span>
+                            <span>👁️ 1,234 次閱讀</span>
+                            <span>⏱️ 8 分鐘閱讀</span>
+                        </div>
+                        <div class="article-tags">
+                            <span class="article-tag">#React</span>
+                            <span class="article-tag">#JavaScript</span>
+                            <span class="article-tag">#Frontend</span>
+                        </div>
+                    </div>
+
+                    <div class="toc">
+                        <h3>📑 目錄 (TOC)</h3>
+                        <div class="toc-item">1. Concurrent Features</div>
+                        <div class="toc-item" style="padding-left: 16px;">1.1 useTransition</div>
+                        <div class="toc-item" style="padding-left: 16px;">1.2 useDeferredValue</div>
+                        <div class="toc-item">2. Automatic Batching</div>
+                        <div class="toc-item">3. Suspense 改進</div>
+                    </div>
+
+                    <div class="post-content">
+                        <h2>1. Concurrent Features</h2>
+                        <p>React 18 引入了 Concurrent Features，這是 React 團隊多年來最重要的更新之一。這些功能讓 React 能夠同時準備多個版本的 UI，使得應用程式更加流暢...</p>
+
+                        <div class="code-block">
+                            <div class="code-lang">javascript</div>
+                            <pre>import { useTransition } from 'react';
+
+function App() {
+  const [isPending, startTransition] = useTransition();
+  
+  const handleClick = () => {
+    startTransition(() => {
+      // 低優先級的更新
+      setData(newData);
+    });
+  };
+}</pre>
+                        </div>
+
+                        <h3>1.1 useTransition</h3>
+                        <p>useTransition 讓你能夠將某些狀態更新標記為「轉換」，React 會將這些更新視為非緊急的...</p>
+
+                        <h2>2. Automatic Batching</h2>
+                        <p>在 React 18 之前，只有在事件處理器中的更新會被自動批次處理。現在，所有的更新都會被批次處理，無論它們在哪裡...</p>
+                    </div>
+
+                    <div style="margin-top: 48px; padding-top: 24px; border-top: 2px solid var(--border-color); display: flex; justify-content: space-between;">
+                        <button style="background-color: var(--card-bg); border: 1px solid var(--border-color); padding: 12px 24px; border-radius: 8px; cursor: pointer;">← 上一篇</button>
+                        <button style="background-color: var(--card-bg); border: 1px solid var(--border-color); padding: 12px 24px; border-radius: 8px; cursor: pointer;">下一篇 →</button>
+                    </div>
+
+                    <div style="margin-top: 48px; background-color: var(--input-bg); border-radius: 12px; padding: 24px;">
+                        <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 16px;">💬 留言討論</h3>
+                        <p style="color: var(--text-secondary); font-size: 14px;">使用 GitHub 帳號登入後即可留言 (整合 Giscus)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 標籤頁 -->
+            <div id="page-tags" class="page-content hidden">
+                <h1 style="font-size: 40px; font-weight: 700; margin-bottom: 32px;">🏷️ 所有標籤</h1>
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; margin-bottom: 48px;">
+                    <div class="article-card" style="text-align: center; padding: 24px;">
+                        <div style="font-size: 20px; font-weight: 600; margin-bottom: 8px;">#React</div>
+                        <div style="font-size: 14px; color: var(--text-secondary);">15 篇文章</div>
+                    </div>
+                    <div class="article-card" style="text-align: center; padding: 24px;">
+                        <div style="font-size: 20px; font-weight: 600; margin-bottom: 8px;">#TypeScript</div>
+                        <div style="font-size: 14px; color: var(--text-secondary);">12 篇文章</div>
+                    </div>
+                    <div class="article-card" style="text-align: center; padding: 24px;">
+                        <div style="font-size: 20px; font-weight: 600; margin-bottom: 8px;">#JavaScript</div>
+                        <div style="font-size: 14px; color: var(--text-secondary);">20 篇文章</div>
+                    </div>
+                    <div class="article-card" style="text-align: center; padding: 24px;">
+                        <div style="font-size: 20px; font-weight: 600; margin-bottom: 8px;">#AI</div>
+                        <div style="font-size: 14px; color: var(--text-secondary);">8 篇文章</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 關於我頁 -->
+            <div id="page-about" class="page-content hidden">
+                <div class="post-container">
+                    <div style="text-align: center; margin-bottom: 48px;">
+                        <div style="width: 120px; height: 120px; border-radius: 50%; background-color: var(--accent-color); margin: 0 auto 24px; display: flex; align-items: center; justify-content: center; font-size: 48px;">👩‍💻</div>
+                        <h1 style="font-size: 36px; font-weight: 700; margin-bottom: 16px;">Hi, 我是 kimi-kiki</h1>
+                        <p style="font-size: 18px; color: var(--text-secondary); max-width: 600px; margin: 0 auto;">一位熱愛學習與分享的全端工程師，專注於 Web 開發、AI 技術與開發者體驗優化</p>
+                    </div>
+
+                    <div style="margin-bottom: 48px;">
+                        <h2 style="font-size: 24px; font-weight: 600; margin-bottom: 24px;">💼 技能</h2>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 16px;">
+                            <div style="background-color: var(--input-bg); padding: 12px; border-radius: 8px; text-align: center; font-weight: 500; border: 1px solid var(--border-color);">React</div>
+                            <div style="background-color: var(--input-bg); padding: 12px; border-radius: 8px; text-align: center; font-weight: 500; border: 1px solid var(--border-color);">TypeScript</div>
+                            <div style="background-color: var(--input-bg); padding: 12px; border-radius: 8px; text-align: center; font-weight: 500; border: 1px solid var(--border-color);">Node.js</div>
+                            <div style="background-color: var(--input-bg); padding: 12px; border-radius: 8px; text-align: center; font-weight: 500; border: 1px solid var(--border-color);">Python</div>
+                            <div style="background-color: var(--input-bg); padding: 12px; border-radius: 8px; text-align: center; font-weight: 500; border: 1px solid var(--border-color);">Docker</div>
+                            <div style="background-color: var(--input-bg); padding: 12px; border-radius: 8px; text-align: center; font-weight: 500; border: 1px solid var(--border-color);">AWS</div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h2 style="font-size: 24px; font-weight: 600; margin-bottom: 24px;">🔗 社群連結</h2>
+                        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+                            <button style="background-color: var(--accent-color); color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 500;">📱 GitHub</button>
+                            <button style="background-color: var(--accent-color); color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 500;">💼 LinkedIn</button>
+                            <button style="background-color: var(--accent-color); color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 500;">🐦 Twitter</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 聯絡我頁 -->
+            <div id="page-contact" class="page-content hidden">
+                <div class="post-container" style="max-width: 600px; margin: 0 auto;">
+                    <h1 style="font-size: 36px; font-weight: 700; margin-bottom: 16px; text-align: center;">📬 聯絡我</h1>
+                    <p style="font-size: 16px; color: var(--text-secondary); margin-bottom: 32px; text-align: center;">有任何問題或合作機會歡迎聯繫我！</p>
+
+                    <div style="margin-bottom: 32px;">
+                        <div style="margin-bottom: 16px;">
+                            <label style="display: block; margin-bottom: 8px; font-weight: 500;">姓名</label>
+                            <input type="text" placeholder="請輸入你的姓名" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--border-color); background-color: var(--input-bg); color: var(--text-color); font-size: 14px;">
+                        </div>
+                        <div style="margin-bottom: 16px;">
+                            <label style="display: block; margin-bottom: 8px; font-weight: 500;">Email</label>
+                            <input type="email" placeholder="your.email@example.com" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--border-color); background-color: var(--input-bg); color: var(--text-color); font-size: 14px;">
+                        </div>
+                        <div style="margin-bottom: 16px;">
+                            <label style="display: block; margin-bottom: 8px; font-weight: 500;">主旨</label>
+                            <input type="text" placeholder="關於..." style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--border-color); background-color: var(--input-bg); color: var(--text-color); font-size: 14px;">
+                        </div>
+                        <div style="margin-bottom: 24px;">
+                            <label style="display: block; margin-bottom: 8px; font-weight: 500;">訊息內容</label>
+                            <textarea rows="6" placeholder="請輸入你想說的話..." style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--border-color); background-color: var(--input-bg); color: var(--text-color); font-size: 14px; resize: vertical;"></textarea>
+                        </div>
+                        <button style="width: 100%; background-color: var(--accent-color); color: white; border: none; padding: 14px; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer;">送出訊息</button>
+                    </div>
+
+                    <div style="border-top: 1px solid var(--border-color); padding-top: 24px; text-align: center;">
+                        <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 16px;">或直接透過以下方式聯繫</p>
+                        <div style="color: var(--text-color); margin-bottom: 12px;">📧 contact@kimi-kiki.dev</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-brand">kimi-kiki Blog</div>
+        <div class="footer-text">© 2024 kimi-kiki. All rights reserved.</div>
+        <div class="footer-links">
+            <a href="#">隱私政策</a>
+            <span style="color: var(--border-color);">|</span>
+            <a href="#">使用條款</a>
+            <span style="color: var(--border-color);">|</span>
+            <a href="#">RSS</a>
+        </div>
+    </footer>
+
+    <script>
+        // 主題切換
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            
+            if (body.classList.contains('light-mode')) {
+                body.classList.remove('light-mode');
+                body.classList.add('dark-mode');
+                themeIcon.textContent = '☀️';
+            } else {
+                body.classList.remove('dark-mode');
+                body.classList.add('light-mode');
+                themeIcon.textContent = '🌙';
+            }
+        }
+
+        // 側邊欄切換
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('collapsed');
+        }
+
+        // 頁面切換
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function() {
+                // 移除所有 active 類
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                // 添加 active 到當前連結
+                this.classList.add('active');
+                
+                // 隱藏所有頁面
+                document.querySelectorAll('.page-content').forEach(page => page.classList.add('hidden'));
+                
+                // 顯示選中的頁面
+                const pageId = 'page-' + this.dataset.page;
+                document.getElementById(pageId).classList.remove('hidden');
+            });
+        });
+
+        // 文章卡片點擊切換到文章頁
+        document.querySelectorAll('.article-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                // 如果在標籤頁，不要執行
+                if (e.target.closest('#page-tags')) return;
+                
+                // 切換到文章頁
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                document.querySelector('[data-page="post"]').classList.add('active');
+                document.querySelectorAll('.page-content').forEach(page => page.classList.add('hidden'));
+                document.getElementById('page-post').classList.remove('hidden');
+            });
+        });
+    </script>
+</body>
+</html>

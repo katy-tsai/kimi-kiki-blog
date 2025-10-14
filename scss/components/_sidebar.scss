@@ -1,0 +1,133 @@
+/* ============================================
+   Sidebar Component
+   ============================================ */
+
+.sidebar {
+  width: var(--sidebar-width);
+  background-color: var(--color-bg-card);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-6);
+  height: fit-content;
+  position: sticky;
+  top: calc(var(--navbar-height) + var(--spacing-6));
+  border: 1px solid var(--color-border-primary);
+  transition: all var(--transition-base) var(--transition-timing-ease);
+  overflow: hidden;
+
+  // Reason: Collapsed state hides sidebar content
+  &--collapsed {
+    width: 0;
+    padding: 0;
+    border: none;
+  }
+
+  // Reason: Hide sidebar on mobile devices
+  @media (max-width: 768px) {
+    display: none;
+  }
+
+  &__section {
+    margin-bottom: var(--spacing-8);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--spacing-4);
+    color: var(--color-text-primary);
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-2);
+  }
+
+  &__tag-link {
+    text-decoration: none;
+    transition: transform var(--transition-fast) var(--transition-timing-ease);
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+  }
+
+  &__posts {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-4);
+  }
+
+  &__post {
+    display: block;
+    text-decoration: none;
+    padding-bottom: var(--spacing-4);
+    border-bottom: 1px solid var(--color-border-primary);
+    transition: all var(--transition-base) var(--transition-timing-ease);
+
+    &:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    &:hover {
+      transform: translateX(4px);
+
+      .sidebar__post-title {
+        color: var(--color-brand-primary);
+      }
+    }
+  }
+
+  &__post-title {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-1);
+    line-height: var(--line-height-snug);
+    transition: color var(--transition-base) var(--transition-timing-ease);
+  }
+
+  &__post-date {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-1);
+  }
+}
+
+/* Sidebar Toggle Button */
+.sidebar-toggle {
+  position: fixed;
+  left: var(--spacing-6);
+  top: calc(var(--navbar-height) + var(--spacing-4));
+  background-color: var(--color-brand-primary);
+  color: var(--color-text-inverse);
+  border: none;
+  padding: var(--spacing-2);
+  border-radius: var(--radius-base);
+  cursor: pointer;
+  z-index: var(--z-fixed);
+  transition: all var(--transition-base) var(--transition-timing-ease);
+  box-shadow: var(--shadow-md);
+
+  &:hover {
+    background-color: var(--color-brand-primary-hover);
+    transform: scale(1.05);
+    box-shadow: var(--shadow-lg);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  // Reason: Hide toggle button on mobile devices
+  @media (max-width: 768px) {
+    display: none;
+  }
+}

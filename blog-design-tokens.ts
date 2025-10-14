@@ -1,0 +1,361 @@
+/* ============================================
+   kimi-kiki Blog - Design Tokens (CSS Variables)
+   ============================================ */
+
+/* ============================================
+   Light Mode (Default)
+   ============================================ */
+:root {
+  /* 🎨 Brand Colors */
+  --color-brand-primary: #3b82f6;
+  --color-brand-primary-hover: #2563eb;
+  --color-brand-primary-light: #60a5fa;
+  --color-brand-primary-dark: #1e40af;
+  
+  /* 🌈 Background Colors */
+  --color-bg-primary: #f8fafc;
+  --color-bg-secondary: #f1f5f9;
+  --color-bg-tertiary: #e2e8f0;
+  --color-bg-card: #ffffff;
+  --color-bg-input: #f1f5f9;
+  --color-bg-nav: #ffffff;
+  --color-bg-code: #1e293b;
+  
+  /* ✏️ Text Colors */
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #64748b;
+  --color-text-tertiary: #94a3b8;
+  --color-text-inverse: #ffffff;
+  --color-text-link: #3b82f6;
+  --color-text-link-hover: #2563eb;
+  --color-text-code: #e2e8f0;
+  
+  /* 📐 Border Colors */
+  --color-border-primary: #e2e8f0;
+  --color-border-secondary: #cbd5e1;
+  --color-border-focus: #3b82f6;
+  --color-border-hover: #cbd5e1;
+  
+  /* ✅ Status Colors */
+  --color-success: #10b981;
+  --color-success-bg: #d1fae5;
+  --color-warning: #f59e0b;
+  --color-warning-bg: #fef3c7;
+  --color-error: #ef4444;
+  --color-error-bg: #fee2e2;
+  --color-info: #3b82f6;
+  --color-info-bg: #dbeafe;
+  
+  /* 🏷️ Tag Colors */
+  --color-tag-react: #61dafb;
+  --color-tag-typescript: #3178c6;
+  --color-tag-javascript: #f7df1e;
+  --color-tag-ai: #7c3aed;
+  --color-tag-frontend: #06b6d4;
+  --color-tag-backend: #10b981;
+  --color-tag-devops: #f97316;
+  --color-tag-uiux: #ec4899;
+  
+  /* 🌊 Shadow */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.03);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-base: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.12);
+  --shadow-2xl: 0 20px 40px rgba(0, 0, 0, 0.15);
+  --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+  
+  /* 📝 Typography - Font Family */
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-serif: Georgia, Cambria, 'Times New Roman', Times, serif;
+  --font-mono: 'SF Mono', Monaco, Inconsolata, 'Fira Code', 'Droid Sans Mono', 'Source Code Pro', monospace;
+  
+  /* 📝 Typography - Font Size */
+  --font-size-xs: 0.75rem;      /* 12px */
+  --font-size-sm: 0.875rem;     /* 14px */
+  --font-size-base: 1rem;       /* 16px */
+  --font-size-lg: 1.125rem;     /* 18px */
+  --font-size-xl: 1.25rem;      /* 20px */
+  --font-size-2xl: 1.5rem;      /* 24px */
+  --font-size-3xl: 1.875rem;    /* 30px */
+  --font-size-4xl: 2.25rem;     /* 36px */
+  --font-size-5xl: 3rem;        /* 48px */
+  --font-size-6xl: 3.75rem;     /* 60px */
+  
+  /* 📝 Typography - Font Weight */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  
+  /* 📝 Typography - Line Height */
+  --line-height-none: 1;
+  --line-height-tight: 1.25;
+  --line-height-snug: 1.375;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.625;
+  --line-height-loose: 2;
+  
+  /* 📝 Typography - Letter Spacing */
+  --letter-spacing-tighter: -0.05em;
+  --letter-spacing-tight: -0.025em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.025em;
+  --letter-spacing-wider: 0.05em;
+  --letter-spacing-widest: 0.1em;
+  
+  /* 📏 Spacing */
+  --spacing-0: 0;
+  --spacing-1: 0.25rem;    /* 4px */
+  --spacing-2: 0.5rem;     /* 8px */
+  --spacing-3: 0.75rem;    /* 12px */
+  --spacing-4: 1rem;       /* 16px */
+  --spacing-5: 1.25rem;    /* 20px */
+  --spacing-6: 1.5rem;     /* 24px */
+  --spacing-8: 2rem;       /* 32px */
+  --spacing-10: 2.5rem;    /* 40px */
+  --spacing-12: 3rem;      /* 48px */
+  --spacing-16: 4rem;      /* 64px */
+  --spacing-20: 5rem;      /* 80px */
+  --spacing-24: 6rem;      /* 96px */
+  --spacing-32: 8rem;      /* 128px */
+  
+  /* 🔲 Border Radius */
+  --radius-none: 0;
+  --radius-sm: 0.25rem;    /* 4px */
+  --radius-base: 0.5rem;   /* 8px */
+  --radius-md: 0.75rem;    /* 12px */
+  --radius-lg: 1rem;       /* 16px */
+  --radius-xl: 1.5rem;     /* 24px */
+  --radius-2xl: 2rem;      /* 32px */
+  --radius-full: 9999px;   /* 完全圓形 */
+  
+  /* 📐 Layout */
+  --navbar-height: 4rem;           /* 64px */
+  --sidebar-width: 17.5rem;        /* 280px */
+  --footer-height: auto;
+  --max-width-xs: 20rem;           /* 320px */
+  --max-width-sm: 24rem;           /* 384px */
+  --max-width-md: 28rem;           /* 448px */
+  --max-width-lg: 32rem;           /* 512px */
+  --max-width-xl: 36rem;           /* 576px */
+  --max-width-2xl: 42rem;          /* 672px */
+  --max-width-3xl: 48rem;          /* 768px */
+  --max-width-4xl: 56rem;          /* 896px */
+  --max-width-content: 50rem;      /* 800px - 文章內容寬度 */
+  --max-width-page: 75rem;         /* 1200px - 頁面最大寬度 */
+  --max-width-full: 100%;
+  
+  /* 🎚️ Z-Index */
+  --z-base: 0;
+  --z-dropdown: 10;
+  --z-sticky: 20;
+  --z-fixed: 30;
+  --z-sidebar: 40;
+  --z-overlay: 50;
+  --z-modal: 60;
+  --z-popover: 70;
+  --z-tooltip: 80;
+  --z-notification: 90;
+  --z-max: 100;
+  
+  /* ⏱️ Transitions */
+  --transition-fast: 150ms;
+  --transition-base: 200ms;
+  --transition-slow: 300ms;
+  --transition-slower: 500ms;
+  --transition-timing-linear: linear;
+  --transition-timing-ease: ease;
+  --transition-timing-ease-in: ease-in;
+  --transition-timing-ease-out: ease-out;
+  --transition-timing-ease-in-out: ease-in-out;
+  
+  /* 🎯 Component Tokens - Button */
+  --button-padding-sm: 0.5rem 1rem;      /* 8px 16px */
+  --button-padding-base: 0.75rem 1.5rem; /* 12px 24px */
+  --button-padding-lg: 1rem 2rem;        /* 16px 32px */
+  --button-font-size-sm: var(--font-size-sm);
+  --button-font-size-base: var(--font-size-base);
+  --button-font-size-lg: var(--font-size-lg);
+  --button-radius: var(--radius-base);
+  
+  /* 🎯 Component Tokens - Input */
+  --input-padding: 0.75rem 1rem;  /* 12px 16px */
+  --input-font-size: var(--font-size-base);
+  --input-radius: var(--radius-base);
+  --input-height: 2.75rem;  /* 44px */
+  
+  /* 🎯 Component Tokens - Card */
+  --card-padding-sm: var(--spacing-4);
+  --card-padding-base: var(--spacing-6);
+  --card-padding-lg: var(--spacing-8);
+  --card-radius: var(--radius-lg);
+  
+  /* 🎯 Component Tokens - Badge & Tag */
+  --badge-padding: 0.25rem 0.75rem;  /* 4px 12px */
+  --badge-font-size: var(--font-size-xs);
+  --badge-radius: var(--radius-full);
+  --tag-padding: 0.375rem 0.75rem;   /* 6px 12px */
+  --tag-font-size: var(--font-size-sm);
+  --tag-radius: var(--radius-lg);
+  
+  /* 🎯 Component Tokens - Article */
+  --article-title-size: var(--font-size-4xl);
+  --article-heading-1: var(--font-size-3xl);
+  --article-heading-2: var(--font-size-2xl);
+  --article-heading-3: var(--font-size-xl);
+  --article-paragraph-size: var(--font-size-lg);
+  --article-line-height: var(--line-height-relaxed);
+  
+  /* 📱 Breakpoints (用於 container queries) */
+  --breakpoint-xs: 320px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+}
+
+/* ============================================
+   Dark Mode
+   ============================================ */
+[data-theme="dark"],
+.dark {
+  /* 🌈 Background Colors */
+  --color-bg-primary: #0f172a;
+  --color-bg-secondary: #1e293b;
+  --color-bg-tertiary: #334155;
+  --color-bg-card: #1e293b;
+  --color-bg-input: #334155;
+  --color-bg-nav: #1e293b;
+  --color-bg-code: #0f172a;
+  
+  /* ✏️ Text Colors */
+  --color-text-primary: #f1f5f9;
+  --color-text-secondary: #cbd5e1;
+  --color-text-tertiary: #94a3b8;
+  --color-text-inverse: #0f172a;
+  --color-text-link: #60a5fa;
+  --color-text-link-hover: #93c5fd;
+  --color-text-code: #f1f5f9;
+  
+  /* 📐 Border Colors */
+  --color-border-primary: #334155;
+  --color-border-secondary: #475569;
+  --color-border-focus: #3b82f6;
+  --color-border-hover: #475569;
+  
+  /* ✅ Status Colors */
+  --color-success: #34d399;
+  --color-success-bg: #064e3b;
+  --color-warning: #fbbf24;
+  --color-warning-bg: #78350f;
+  --color-error: #f87171;
+  --color-error-bg: #7f1d1d;
+  --color-info: #60a5fa;
+  --color-info-bg: #1e3a8a;
+  
+  /* 🌊 Shadow */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.2);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-base: 0 2px 4px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.3);
+  --shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.35);
+  --shadow-2xl: 0 20px 40px rgba(0, 0, 0, 0.4);
+  --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================
+   Prefers Color Scheme (系統偏好設定)
+   ============================================ */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    /* 🌈 Background Colors */
+    --color-bg-primary: #0f172a;
+    --color-bg-secondary: #1e293b;
+    --color-bg-tertiary: #334155;
+    --color-bg-card: #1e293b;
+    --color-bg-input: #334155;
+    --color-bg-nav: #1e293b;
+    --color-bg-code: #0f172a;
+    
+    /* ✏️ Text Colors */
+    --color-text-primary: #f1f5f9;
+    --color-text-secondary: #cbd5e1;
+    --color-text-tertiary: #94a3b8;
+    --color-text-inverse: #0f172a;
+    --color-text-link: #60a5fa;
+    --color-text-link-hover: #93c5fd;
+    --color-text-code: #f1f5f9;
+    
+    /* 📐 Border Colors */
+    --color-border-primary: #334155;
+    --color-border-secondary: #475569;
+    --color-border-focus: #3b82f6;
+    --color-border-hover: #475569;
+    
+    /* ✅ Status Colors */
+    --color-success: #34d399;
+    --color-success-bg: #064e3b;
+    --color-warning: #fbbf24;
+    --color-warning-bg: #78350f;
+    --color-error: #f87171;
+    --color-error-bg: #7f1d1d;
+    --color-info: #60a5fa;
+    --color-info-bg: #1e3a8a;
+    
+    /* 🌊 Shadow */
+    --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.2);
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-base: 0 2px 4px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.25);
+    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.3);
+    --shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.35);
+    --shadow-2xl: 0 20px 40px rgba(0, 0, 0, 0.4);
+    --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* ============================================
+   Usage Examples (使用範例)
+   ============================================ */
+
+/*
+  基本用法：
+  
+  body {
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    font-family: var(--font-sans);
+  }
+
+  .card {
+    background-color: var(--color-bg-card);
+    border-radius: var(--card-radius);
+    padding: var(--card-padding-base);
+    box-shadow: var(--shadow-base);
+  }
+
+  .button {
+    background-color: var(--color-brand-primary);
+    color: var(--color-text-inverse);
+    padding: var(--button-padding-base);
+    border-radius: var(--button-radius);
+    transition: all var(--transition-base) var(--transition-timing-ease);
+  }
+
+  .button:hover {
+    background-color: var(--color-brand-primary-hover);
+  }
+
+  切換深色模式：
+  
+  // JavaScript
+  document.documentElement.setAttribute('data-theme', 'dark');
+  // 或
+  document.documentElement.classList.add('dark');
+*/

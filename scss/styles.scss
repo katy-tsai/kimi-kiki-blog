@@ -1,0 +1,23 @@
+/* ============================================
+   kimi-kiki Blog - Main SCSS Entry Point
+   ============================================ */
+
+/* Core Styles */
+@import 'core/theme/variables';
+@import 'core/reset';
+@import 'core/typography';
+@import 'core/global';
+
+/* Component Styles */
+@import 'components/navbar';
+@import 'components/footer';
+@import 'components/theme-switcher';
+@import 'components/view';
+@import 'components/button';
+@import 'components/card';
+@import 'components/tag-badge';
+@import 'components/article-card';
+@import 'components/article-list';
+
+/* Page Styles */
+@import 'pages/home';

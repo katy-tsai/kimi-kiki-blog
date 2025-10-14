@@ -1,0 +1,39 @@
+{
+  "name": "kimi-kiki-blog",
+  "version": "1.0.0",
+  "description": "這是一個全面的模板，幫助你快速開始 Context Engineering —— 這是一門專門為 AI 程式助理設計「上下文」的工程方法，確保 AI 有足夠的資訊來完成從頭到尾的工作。",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "keywords": [],
+  "author": "katy <katytsai.git@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "date-fns": "^4.1.0",
+    "gray-matter": "^4.0.3",
+    "lucide-react": "^0.545.0",
+    "next": "^15.5.5",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "remark": "^15.0.1",
+    "remark-html": "^16.0.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.0",
+    "@types/node": "^24.7.2",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "eslint": "^9.37.0",
+    "eslint-config-next": "^15.5.5",
+    "playwright": "^1.56.0",
+    "sass": "^1.93.2",
+    "typescript": "^5.9.3"
+  }
+}

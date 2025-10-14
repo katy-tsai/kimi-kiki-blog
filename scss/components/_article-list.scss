@@ -1,0 +1,26 @@
+/* ============================================
+   Article List Component
+   ============================================ */
+
+.article-list {
+  // Reason: Stack articles vertically like the design prototype
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+  width: 100%;
+
+  // Empty state
+  &--empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    text-align: center;
+  }
+
+  &__empty-message {
+    font-size: var(--font-size-xl);
+    color: var(--color-text-tertiary);
+    margin: 0;
+  }
+}
