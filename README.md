@@ -68,7 +68,7 @@ npm run lint      # 執行 ESLint 檢查
 
 ## 📁 專案結構
 
-```
+```text
 kimi-kiki-blog/
 ├── app/                          # Next.js App Router
 │   ├── layout.tsx               # 共用 Layout (Navbar, Footer, Theme)
@@ -151,6 +151,7 @@ kimi-kiki-blog/
 專案使用完整的 Design Tokens 系統,所有樣式變數定義在 `scss/core/theme/_variables.scss`:
 
 #### 🎨 顏色系統
+
 - **Brand Colors**: 品牌主色、懸浮色、淺色、深色
 - **Background Colors**: 主背景、次要背景、卡片背景
 - **Text Colors**: 主文字、次要文字、連結
@@ -159,12 +160,14 @@ kimi-kiki-blog/
 - **Tag Colors**: React、TypeScript、JavaScript、AI 等
 
 #### 📝 排版系統
+
 - **Font Family**: sans、serif、mono
 - **Font Size**: 12px - 60px
 - **Font Weight**: 300 - 800
 - **Line Height**: 1 - 2
 
 #### 📏 間距與佈局
+
 - **Spacing**: 4px - 128px (使用 4px 基準)
 - **Border Radius**: 4px - 完全圓形
 - **Z-Index**: 0 - 100 (分層管理)
@@ -325,12 +328,14 @@ git commit -m "style: 調整 Navbar 樣式"
 ## 🎯 核心功能
 
 ### 🏠 首頁 (Home Page)
+
 - Hero Section 橫幅
 - 文章卡片列表
 - 側邊欄 (熱門標籤 + 推薦閱讀)
 - 分頁功能
 
 ### 📄 文章頁 (Post Page)
+
 - 文章標題、日期、標籤
 - Markdown 內容渲染
 - 目錄 (TOC)
@@ -338,16 +343,19 @@ git commit -m "style: 調整 Navbar 樣式"
 - 留言系統 (Giscus/Disqus)
 
 ### 🏷️ 標籤頁 (Tags Page)
+
 - 所有標籤列表
 - 每個標籤的文章數量
 - 標籤文章篩選
 
 ### 👩‍💻 關於頁 (About Page)
+
 - 個人簡介與頭像
 - 技能展示
 - 社群連結 (GitHub, LinkedIn, Twitter)
 
 ### 📬 聯絡頁 (Contact Page)
+
 - 聯絡表單
 - 直接聯絡方式 (Email, X, LinkedIn)
 
@@ -379,12 +387,14 @@ vercel
 ## 📚 參考資源
 
 ### 官方文件
+
 - [Next.js Documentation](https://nextjs.org/docs)
 - [React Documentation](https://react.dev/)
 - [TypeScript Documentation](https://www.typescriptlang.org/docs/)
 - [SCSS Documentation](https://sass-lang.com/documentation/)
 
 ### 設計參考
+
 - [互動式設計原型](blog-design-prototype.html)
 - [CLAUDE.md - 完整專案文件](CLAUDE.md)
 
@@ -412,6 +422,7 @@ git push origin feat/your-feature
 ```
 
 ### 審查重點
+
 - [ ] 符合命名規範
 - [ ] 型別定義完整
 - [ ] 有適當註解
@@ -428,10 +439,10 @@ MIT License - 詳見 [LICENSE](./LICENSE)
 
 ## 👤 作者
 
-**kimi-kiki**
+### kimi-kiki
 
 - GitHub: [@kimi-kiki](https://github.com/kimi-kiki)
-- Email: katytsai.git@gmail.com
+- Email: <katytsai.git@gmail.com>
 
 ---
 
@@ -443,4 +454,4 @@ MIT License - 詳見 [LICENSE](./LICENSE)
 
 ---
 
-**Built with ❤️ and Next.js**
+### Built with ❤️ and Next.js
