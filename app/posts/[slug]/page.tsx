@@ -21,6 +21,8 @@ import type { Metadata } from 'next'
 import { TagBadge } from '@/components/ui/TagBadge'
 import { TOC } from '@/components/article/TOC'
 import { Clock } from 'lucide-react'
+import { Sidebar } from '@/components/layout/Sidebar'
+import usePostTagData from '@/hooks/usePostTagData'
 
 // CRITICAL: Next.js 15 - params is a Promise
 interface PostPageProps {
@@ -69,8 +71,16 @@ export async function generateMetadata({
  * Reason: Displays full blog post with all details and navigation
  */
 export default async function PostPage({ params }: PostPageProps) {
-  const { slug } = await params
-  const post = await getPostBySlug(slug)
+  let { slug } = await params
+  let { allTags, finalRecommendedPosts } = await usePostTagData();
+  const allPosts = await getSortedPosts()
+
+  if (slug === "lastest") {
+    slug = allPosts[0].slug
+  }
+  console.log("slug", slug)
+
+  let post = await getPostBySlug(slug)
 
   // Reason: Show 404 if post not found
   if (!post) {
@@ -78,7 +88,7 @@ export default async function PostPage({ params }: PostPageProps) {
   }
 
   // Reason: Get prev/next posts for navigation
-  const allPosts = await getSortedPosts()
+
   const currentIndex = allPosts.findIndex((p) => p.slug === slug)
   const prevPost =
     currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null
@@ -89,6 +99,7 @@ export default async function PostPage({ params }: PostPageProps) {
 
   return (
     <div className="post-page">
+      <Sidebar tags={allTags} recommendedPosts={finalRecommendedPosts} />
       <article className="post-container">
         {/* Post Header */}
         <header className="post-header">

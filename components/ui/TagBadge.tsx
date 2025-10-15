@@ -16,15 +16,6 @@ interface TagBadgeProps {
 export const TagBadge: React.FC<TagBadgeProps> = ({ tag, className = '' }) => {
   // Reason: Map tag names to color classes based on design tokens
   const getTagColorClass = (tagName: string): string => {
-    const tagLower = tagName.toLowerCase()
-    if (tagLower.includes('react')) return 'tag-badge--react'
-    if (tagLower.includes('typescript')) return 'tag-badge--typescript'
-    if (tagLower.includes('javascript')) return 'tag-badge--javascript'
-    if (tagLower.includes('ai')) return 'tag-badge--ai'
-    if (tagLower.includes('frontend')) return 'tag-badge--frontend'
-    if (tagLower.includes('backend')) return 'tag-badge--backend'
-    if (tagLower.includes('devops')) return 'tag-badge--devops'
-    if (tagLower.includes('ui') || tagLower.includes('ux')) return 'tag-badge--uiux'
     return 'tag-badge--default'
   }
 
@@ -32,7 +23,7 @@ export const TagBadge: React.FC<TagBadgeProps> = ({ tag, className = '' }) => {
 
   return (
     <span className={`tag-badge ${colorClass} ${className}`}>
-      {tag}
+      {`#${tag}`}
     </span>
   )
 }

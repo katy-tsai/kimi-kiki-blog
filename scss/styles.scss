@@ -3,21 +3,25 @@
    ============================================ */
 
 /* Core Styles */
-@import 'core/theme/variables';
-@import 'core/reset';
-@import 'core/typography';
-@import 'core/global';
+@use 'core/theme/variables';
+@use 'core/reset';
+@use 'core/typography';
+@use 'core/global';
 
 /* Component Styles */
-@import 'components/navbar';
-@import 'components/footer';
-@import 'components/theme-switcher';
-@import 'components/view';
-@import 'components/button';
-@import 'components/card';
-@import 'components/tag-badge';
-@import 'components/article-card';
-@import 'components/article-list';
+@use 'components/navbar';
+@use 'components/footer';
+@use 'components/theme-switcher';
+@use 'components/view';
+@use 'components/button';
+@use 'components/card';
+@use 'components/tag-badge';
+@use 'components/article-card';
+@use 'components/article-list';
+@use 'components/hero-banner';
+@use 'components/sidebar';
+@use 'components/toc';
 
 /* Page Styles */
-@import 'pages/home';
+@use 'pages/home';
+@use 'pages/post';

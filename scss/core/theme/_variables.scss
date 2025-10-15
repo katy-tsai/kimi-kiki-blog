@@ -7,10 +7,10 @@
    ============================================ */
 :root {
   /* 🎨 Brand Colors */
-  --color-brand-primary: #3b82f6;
+  --color-brand-primary: #3980f5;
   --color-brand-primary-hover: #2563eb;
   --color-brand-primary-light: #60a5fa;
-  --color-brand-primary-dark: #1e40af;
+  --color-brand-primary-dark: #2564eb;
   
   /* 🌈 Background Colors */
   --color-bg-primary: #f8fafc;
@@ -29,6 +29,7 @@
   --color-text-link: #3b82f6;
   --color-text-link-hover: #2563eb;
   --color-text-code: #e2e8f0;
+  --color-text-inverse:#ffffff;
   
   /* 📐 Border Colors */
   --color-border-primary: #e2e8f0;
@@ -199,7 +200,7 @@
   --badge-font-size: var(--font-size-xs);
   --badge-radius: var(--radius-full);
   --tag-padding: 0.375rem 0.75rem;   /* 6px 12px */
-  --tag-font-size: var(--font-size-sm);
+  --tag-font-size: var(--font-size-xs);
   --tag-radius: var(--radius-lg);
   
   /* 🎯 Component Tokens - Article */
@@ -340,7 +341,7 @@
     box-shadow: var(--shadow-base);
   }
 
-  .button {
+  .--tag-font-size {
     background-color: var(--color-brand-primary);
     color: var(--color-text-inverse);
     padding: var(--button-padding-base);

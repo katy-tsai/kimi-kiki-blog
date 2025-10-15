@@ -13,7 +13,7 @@
  */
 
 import { Button } from '@/components/ui/Button'
-
+import Image from 'next/image'
 /**
  * Hero Banner Component
  *
@@ -29,6 +29,14 @@ export const HeroBanner: React.FC = () => {
           開始閱讀 →
         </Button>
       </div>
+      <Image
+        src="/images/banner.png"
+        alt="kimi-kiki 技術部落格橫幅圖片"
+        width={400}
+        height={300}
+        priority
+        className="hero-banner__image"
+      />
     </section>
   )
 }

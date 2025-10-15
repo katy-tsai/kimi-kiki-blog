@@ -18,54 +18,8 @@
     color: var(--color-text-primary);
   }
 
-  // Tag color variants
-  &--react {
-    background-color: rgba(97, 218, 251, 0.15);
-    color: var(--color-tag-react);
-    border: 1px solid var(--color-tag-react);
-  }
+ 
 
-  &--typescript {
-    background-color: rgba(49, 120, 198, 0.15);
-    color: var(--color-tag-typescript);
-    border: 1px solid var(--color-tag-typescript);
-  }
-
-  &--javascript {
-    background-color: rgba(247, 223, 30, 0.15);
-    color: var(--color-tag-javascript);
-    border: 1px solid var(--color-tag-javascript);
-  }
-
-  &--ai {
-    background-color: rgba(124, 58, 237, 0.15);
-    color: var(--color-tag-ai);
-    border: 1px solid var(--color-tag-ai);
-  }
-
-  &--frontend {
-    background-color: rgba(6, 182, 212, 0.15);
-    color: var(--color-tag-frontend);
-    border: 1px solid var(--color-tag-frontend);
-  }
-
-  &--backend {
-    background-color: rgba(16, 185, 129, 0.15);
-    color: var(--color-tag-backend);
-    border: 1px solid var(--color-tag-backend);
-  }
-
-  &--devops {
-    background-color: rgba(249, 115, 22, 0.15);
-    color: var(--color-tag-devops);
-    border: 1px solid var(--color-tag-devops);
-  }
-
-  &--uiux {
-    background-color: rgba(236, 72, 153, 0.15);
-    color: var(--color-tag-uiux);
-    border: 1px solid var(--color-tag-uiux);
-  }
 
   &:hover {
     transform: scale(1.05);
