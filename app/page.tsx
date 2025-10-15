@@ -17,7 +17,7 @@ import type { Metadata } from 'next'
 import { ArticleList } from '@/components/article/ArticleList'
 import { HeroBanner } from '@/components/home/HeroBanner'
 import { Sidebar } from '@/components/layout/Sidebar'
-import usePostTagData from '@/hooks/usePostTagData'
+import { getAllTags, getSortedPosts } from '@/lib/posts'
 
 export const metadata: Metadata = {
   title: 'Home',
@@ -25,7 +25,14 @@ export const metadata: Metadata = {
 }
 
 export default async function HomePage() {
-  let { allTags, posts, finalRecommendedPosts } = await usePostTagData();
+  // Reason: Get data for homepage and sidebar
+  const allTags = await getAllTags()
+  const posts = await getSortedPosts()
+  const recommendedPosts = posts.filter((post) => post.featured).slice(0, 3)
+  const finalRecommendedPosts =
+    recommendedPosts.length >= 3
+      ? recommendedPosts
+      : [...recommendedPosts, ...posts.slice(0, 3 - recommendedPosts.length)]
 
 
   return (

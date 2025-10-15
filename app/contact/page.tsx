@@ -15,19 +15,31 @@
  */
 
 import type { Metadata } from 'next'
+import { Sidebar } from '@/components/layout/Sidebar'
+import { getAllTags, getSortedPosts } from '@/lib/posts'
 
 export const metadata: Metadata = {
   title: 'Contact',
   description: '聯絡 kimi-kiki - 合作洽詢與交流',
 }
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  // Reason: Get data for sidebar
+  const allTags = await getAllTags()
+  const posts = await getSortedPosts()
+  const recommendedPosts = posts.filter((post) => post.featured).slice(0, 3)
+  const finalRecommendedPosts =
+    recommendedPosts.length >= 3
+      ? recommendedPosts
+      : [...recommendedPosts, ...posts.slice(0, 3 - recommendedPosts.length)]
+
   return (
     <div className="contact-page">
+      <Sidebar tags={allTags} recommendedPosts={finalRecommendedPosts} />
       <div className="contact-container">
         <header className="contact-header">
           <h1 className="contact-title">📬 聯絡我</h1>
-          <p className="contact-description">
+          <p className="contact-subtitle">
             有任何問題或合作機會歡迎聯繫我！
           </p>
         </header>

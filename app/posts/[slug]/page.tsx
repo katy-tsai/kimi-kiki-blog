@@ -13,7 +13,7 @@
  * Reason: Dynamic route for individual blog posts
  */
 
-import { getPostBySlug, getAllPosts, getSortedPosts } from '@/lib/posts'
+import { getPostBySlug, getAllPosts, getSortedPosts, getAllTags } from '@/lib/posts'
 import { notFound } from 'next/navigation'
 import { format } from 'date-fns'
 import Link from 'next/link'
@@ -22,7 +22,6 @@ import { TagBadge } from '@/components/ui/TagBadge'
 import { TOC } from '@/components/article/TOC'
 import { Clock } from 'lucide-react'
 import { Sidebar } from '@/components/layout/Sidebar'
-import usePostTagData from '@/hooks/usePostTagData'
 
 // CRITICAL: Next.js 15 - params is a Promise
 interface PostPageProps {
@@ -72,8 +71,15 @@ export async function generateMetadata({
  */
 export default async function PostPage({ params }: PostPageProps) {
   let { slug } = await params
-  let { allTags, finalRecommendedPosts } = await usePostTagData();
+
+  // Reason: Get data for sidebar
+  const allTags = await getAllTags()
   const allPosts = await getSortedPosts()
+  const recommendedPosts = allPosts.filter((post) => post.featured).slice(0, 3)
+  const finalRecommendedPosts =
+    recommendedPosts.length >= 3
+      ? recommendedPosts
+      : [...recommendedPosts, ...allPosts.slice(0, 3 - recommendedPosts.length)]
 
   if (slug === "lastest") {
     slug = allPosts[0].slug

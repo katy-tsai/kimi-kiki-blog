@@ -13,9 +13,10 @@
  */
 
 import type { Metadata } from 'next'
-import { getAllTags, getAllPosts } from '@/lib/posts'
+import { getAllTags, getAllPosts, getSortedPosts } from '@/lib/posts'
 import { TagBadge } from '@/components/ui/TagBadge'
 import Link from 'next/link'
+import { Sidebar } from '@/components/layout/Sidebar'
 
 export const metadata: Metadata = {
   title: 'Tags',
@@ -26,6 +27,14 @@ export default async function TagsPage() {
   const allTags = await getAllTags()
   const allPosts = await getAllPosts()
 
+  // Reason: Get recommended posts for sidebar
+  const posts = await getSortedPosts()
+  const recommendedPosts = posts.filter((post) => post.featured).slice(0, 3)
+  const finalRecommendedPosts =
+    recommendedPosts.length >= 3
+      ? recommendedPosts
+      : [...recommendedPosts, ...posts.slice(0, 3 - recommendedPosts.length)]
+
   // Reason: Count articles per tag
   const tagCounts = allTags.map((tag) => {
     const count = allPosts.filter((post) => post.tags.includes(tag)).length
@@ -34,6 +43,7 @@ export default async function TagsPage() {
 
   return (
     <div className="tags-page">
+      <Sidebar tags={allTags} recommendedPosts={finalRecommendedPosts} />
       <div className="tags-container">
         <header className="tags-header">
           <h1 className="tags-title">🏷️ 所有標籤</h1>
