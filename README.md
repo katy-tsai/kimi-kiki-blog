@@ -1,256 +1,446 @@
-# Context Engineering 模板 (中文版)
+# kimi-kiki Blog
 
-這是一個全面的模板，幫助你快速開始 Context Engineering —— 這是一門專門為 AI 程式助理設計「上下文」的工程方法，確保 AI 有足夠的資訊來完成從頭到尾的工作。
+> 🚀 一個基於 Next.js 15 的現代化技術部落格平台，專注於學習紀錄與技術分享
 
-> **Context Engineering 比 Prompt Engineering 強 10 倍，比隨意寫程式 (vibe coding) 強 100 倍。**
+[![Next.js](https://img.shields.io/badge/Next.js-15.5-black?style=flat-square&logo=next.js)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19.2-61dafb?style=flat-square&logo=react)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178c6?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
+[![SCSS](https://img.shields.io/badge/SCSS-1.93-cc6699?style=flat-square&logo=sass)](https://sass-lang.com/)
+[![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](./LICENSE)
 
-## 🚀 Quick Start
+## 📋 專案簡介
+
+這是一個為技術分享而生的部落格平台，採用 Next.js App Router 架構，使用 Markdown 撰寫文章，搭配完整的設計系統與響應式佈局。
+
+### 🎯 目標受眾
+
+- 同行工程師
+- 技術愛好者
+- 一般大眾
+
+### 🌟 主要特色
+
+- ✅ **現代化技術棧**: Next.js 15 + React 19 + TypeScript
+- ✅ **Markdown 撰寫**: 支援 MDX，輕鬆撰寫技術文章
+- ✅ **完整設計系統**: 使用 CSS Variables 與 SCSS
+- ✅ **深色模式**: 亮色/暗色主題切換
+- ✅ **響應式設計**: 完美支援手機、平板、桌面
+- ✅ **SEO 優化**: 完整的 Meta Tags 與結構化資料
+- ✅ **標籤系統**: 文章分類與篩選
+- ✅ **側邊欄導覽**: 熱門標籤 + 推薦閱讀
+
+---
+
+## 🚀 快速開始
+
+### 環境需求
+
+- **Node.js**: >= 20.x
+- **npm**: >= 10.x
+
+### 安裝步驟
 
 ```bash
-# 1. 複製此模板
-git clone https://github.com/coleam00/Context-Engineering-Intro.git
-cd Context-Engineering-Intro
+# 1. 複製專案
+git clone https://github.com/kimi-kiki/kimi-kiki-blog.git
+cd kimi-kiki-blog
 
-# 2. 設定專案規則（可選 - 模板已提供）
-# 編輯 CLAUDE.md 來新增專案專屬的指引
+# 2. 安裝依賴
+npm install
 
-# 3. 新增範例（強烈建議）
-# 將相關程式碼範例放到 examples/ 資料夾
+# 3. 啟動開發伺服器
+npm run dev
 
-# 4. 建立初始功能需求
-# 編輯 INITIAL.md，寫下功能需求
-
-# 5. 產生完整的 PRP（產品需求提示）
-# 在 Claude Code 中執行：
-/generate-prp INITIAL.md
-
-# 6. 執行 PRP 來實作功能
-# 在 Claude Code 中執行：
-/execute-prp PRPs/your-feature-name.md
-
+# 4. 開啟瀏覽器
+# 訪問 http://localhost:3000
 ```
 
-## 📚 Table of Contents
+### 可用指令
 
-- [What is Context Engineering?](#what-is-context-engineering)
-- [Template Structure](#template-structure)
-- [Step-by-Step Guide](#step-by-step-guide)
-- [Writing Effective INITIAL.md Files](#writing-effective-initialmd-files)
-- [The PRP Workflow](#the-prp-workflow)
-- [Using Examples Effectively](#using-examples-effectively)
-- [Best Practices](#best-practices)
-
-## What is Context Engineering?
-
-Context Engineering represents a paradigm shift from traditional prompt engineering:
-
-### Prompt Engineering vs Context Engineering
-
-**Prompt Engineering:**
-
-- 專注於精巧的措辭與表達方式
-- 僅限於任務的「描述方式」
-- 好比給人一張便利貼
-
-**Context Engineering:**
-
-- 提供完整的上下文系統
-- 包含文件、範例、規則、模式與驗證
-- 就像寫一部完整的劇本，細節都備齊
-
-### 為什麼 Context Engineering 重要？
-
-1. *降低 AI 失敗率**: 大部分 AI 失敗並不是模型問題，而是缺乏上下文
-2. **確保一致性**: AI 會遵循你的專案規範與慣例
-3. **支援複雜功能**: 有完整上下文時，AI 能處理多步驟實作
-4. **自我修正**: 透過驗證迴圈，AI 能自動修正錯誤
-
-## Template Structure
-
-```
-context-engineering-intro/
-├── .claude/
-│   ├── commands/
-│   │   ├── generate-prp.md    # 產生 PRP
-│   │   └── execute-prp.md     # 執行 PRP 實作功能
-│   └── settings.local.json    # Claude Code 權限
-├── PRPs/
-│   ├── templates/
-│   │   └── prp_base.md        # PRP 基礎模板
-│   └── EXAMPLE_multi_agent_prp.md  # 完整 PRP 範例
-├── examples/                  # 範例程式碼（非常重要！）
-├── CLAUDE.md                  # 專案全域規則
-├── INITIAL.md                 # 初始功能需求
-├── INITIAL_EXAMPLE.md         # 初始需求範例
-└── README.md                  # 本文件
-
+```bash
+npm run dev       # 啟動開發伺服器 (Turbopack)
+npm run build     # 建置生產版本
+npm run start     # 啟動生產伺服器
+npm run lint      # 執行 ESLint 檢查
 ```
 
-This template doesn't focus on RAG and tools with context engineering because I have a LOT more in store for that soon. ;)
+---
 
-## 逐步操作指南
+## 📁 專案結構
 
-### 1. Set Up Global Rules (CLAUDE.md)
+```
+kimi-kiki-blog/
+├── app/                          # Next.js App Router
+│   ├── layout.tsx               # 共用 Layout (Navbar, Footer, Theme)
+│   ├── page.tsx                 # 首頁：文章列表
+│   ├── tags/
+│   │   ├── page.tsx            # 標籤列表頁
+│   │   └── [tag]/page.tsx      # 單一標籤文章列表
+│   ├── posts/
+│   │   └── [slug]/page.tsx     # 單篇文章頁
+│   ├── about/page.tsx          # 關於我
+│   └── contact/page.tsx        # 聯絡我
+│
+├── components/                  # React 元件
+│   ├── layout/                 # 佈局元件
+│   │   ├── Navbar.tsx
+│   │   ├── Footer.tsx
+│   │   ├── Sidebar.tsx
+│   │   └── ThemeSwitcher.tsx
+│   ├── article/                # 文章相關元件
+│   │   ├── ArticleCard.tsx
+│   │   ├── ArticleList.tsx
+│   │   └── TOC.tsx             # 目錄
+│   ├── home/
+│   │   └── HeroBanner.tsx      # 首頁橫幅
+│   └── ui/                     # UI 元件
+│       ├── Button.tsx
+│       ├── Card.tsx
+│       ├── TagBadge.tsx
+│       └── Input.tsx
+│
+├── content/                     # Markdown 文章
+│   └── posts/
+│       ├── post-1.md
+│       ├── post-2.md
+│       └── ...
+│
+├── lib/                         # 工具函數
+│   ├── markdown.ts             # Markdown 解析
+│   ├── posts.ts                # 文章資料處理
+│   └── utils.ts                # 通用工具
+│
+├── scss/                        # 樣式系統
+│   ├── core/                   # 核心樣式
+│   │   ├── theme/
+│   │   │   ├── _variables.scss    # Design Tokens
+│   │   │   ├── _light-theme.scss  # 亮色主題
+│   │   │   └── _dark-theme.scss   # 深色主題
+│   │   ├── _reset.scss
+│   │   ├── _typography.scss
+│   │   └── _global.scss
+│   ├── components/             # 元件樣式
+│   │   ├── Navbar.scss
+│   │   ├── ArticleCard.scss
+│   │   └── ...
+│   ├── pages/                  # 頁面樣式
+│   │   ├── _tags.scss
+│   │   ├── _about.scss
+│   │   └── _contact.scss
+│   └── styles.scss             # SCSS 主檔案
+│
+├── types/                       # TypeScript 型別定義
+│   └── post.ts
+│
+├── public/                      # 靜態資源
+│   ├── images/
+│   └── fonts/
+│
+├── CLAUDE.md                    # 專案開發文件 (AI 上下文)
+├── next.config.js
+├── tsconfig.json
+└── package.json
+```
 
-CLAUDE.md 用來定義 AI 助理在專案中必須遵守的規範，例如：
+---
 
-- **專案認知**:讀取計劃文件、檢查任務
-- **程式結構**: 檔案大小限制、模組組織方式
-- **測試需求**: 單元測試模式與覆蓋率
-- **程式風格**: 語言偏好、格式化規則
-- **文件標準**: docstring 格式、註解習慣
+## 🎨 設計系統
 
-**You can use the provided template as-is or customize it for your project.**
+### Design Tokens
 
-### 2. Create Your Initial Feature Request
+專案使用完整的 Design Tokens 系統,所有樣式變數定義在 `scss/core/theme/_variables.scss`:
 
-編輯 INITIAL.md，描述你要開發的功能：
+#### 🎨 顏色系統
+- **Brand Colors**: 品牌主色、懸浮色、淺色、深色
+- **Background Colors**: 主背景、次要背景、卡片背景
+- **Text Colors**: 主文字、次要文字、連結
+- **Border Colors**: 主邊框、次要邊框、聚焦邊框
+- **Status Colors**: 成功、警告、錯誤、資訊
+- **Tag Colors**: React、TypeScript、JavaScript、AI 等
+
+#### 📝 排版系統
+- **Font Family**: sans、serif、mono
+- **Font Size**: 12px - 60px
+- **Font Weight**: 300 - 800
+- **Line Height**: 1 - 2
+
+#### 📏 間距與佈局
+- **Spacing**: 4px - 128px (使用 4px 基準)
+- **Border Radius**: 4px - 完全圓形
+- **Z-Index**: 0 - 100 (分層管理)
+
+### CSS Variables 範例
+
+```scss
+.card {
+  background-color: var(--color-bg-card);
+  padding: var(--card-padding-base);
+  border-radius: var(--card-radius);
+  box-shadow: var(--shadow-base);
+}
+
+// 主題切換
+[data-theme="dark"] {
+  --color-bg-primary: #0f172a;
+  --color-text-primary: #f1f5f9;
+}
+```
+
+---
+
+## 📝 撰寫文章
+
+### Frontmatter 格式
+
+在 `content/posts/` 目錄下建立 `.md` 檔案:
 
 ```markdown
-## FEATURE:
-[描述你要開發的功能，具體列出需求]
+---
+title: React 18 新特性完整指南
+excerpt: 深入探討 React 18 的 Concurrent Features
+date: 2024-10-10
+tags:
+  - React
+  - JavaScript
+  - Frontend
+author:
+  name: kimi-kiki
+  avatar: /images/avatar.jpg
+featured: true
+---
 
-## EXAMPLES:
-[列出 examples/ 內的相關範例，說明如何使用]
+# 文章內容開始...
 
-## DOCUMENTATION:
-[附上相關文件、API 或 MCP server 資源]
+## 章節一
 
-## OTHER CONSIDERATIONS:
-[列出注意事項、需求、常見錯誤]
-
+文章內容...
 ```
 
+### 支援功能
 
-### 3. 產生 PRP
+| 功能 | 說明 |
+|------|------|
+| 標題層級 | `#` `##` `###` 自動生成 TOC |
+| 程式碼區塊 | Syntax Highlighting |
+| 引用 | 特殊樣式呈現 |
+| 分隔線 | 視覺區隔 |
+| 連結 | 內部/外部連結 |
+| 圖片 | 響應式寬度 |
+| 表格 | 響應式表格 |
+| 列表 | 有序/無序列表 |
 
-PRP（Product Requirements Prompt, 產品需求提示）是一份完整的 實作藍圖，包含：
+---
 
-- 全部上下文與文件
-- 實作步驟與驗證
-- 錯誤處理模式
-- 測試需求
+## 🛠️ 技術棧
 
+### 核心技術
+
+| 技術 | 版本 | 用途 |
+|------|------|------|
+| **Next.js** | 15.5 | React 框架 (App Router) |
+| **React** | 19.2 | UI 函式庫 |
+| **TypeScript** | 5.9 | 型別系統 |
+| **SCSS** | 1.93 | 樣式預處理器 |
+
+### 依賴套件
+
+```json
+{
+  "dependencies": {
+    "next": "^15.5.5",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "gray-matter": "^4.0.3",      // Markdown frontmatter 解析
+    "remark": "^15.0.1",           // Markdown 處理
+    "remark-html": "^16.0.1",      // Markdown 轉 HTML
+    "lucide-react": "^0.545.0",    // Icon 圖示
+    "date-fns": "^4.1.0"           // 日期格式化
+  },
+  "devDependencies": {
+    "@types/node": "^24.7.2",
+    "@types/react": "^19.2.2",
+    "typescript": "^5.9.3",
+    "sass": "^1.93.2",
+    "eslint": "^9.37.0",
+    "eslint-config-next": "^15.5.5",
+    "@playwright/test": "^1.56.0"  // E2E 測試
+  }
+}
+```
+
+---
+
+## 📐 開發規範
+
+### 命名規範
+
+| 類型 | 規範 | 範例 |
+|------|------|------|
+| 元件 | PascalCase | `Button`, `ArticleCard` |
+| 檔案 (元件) | PascalCase | `Button.tsx`, `UserProfile.tsx` |
+| 檔案 (工具) | camelCase | `utils.ts`, `formatDate.ts` |
+| 變數/函數 | camelCase | `getUserData`, `isLoading` |
+| 常數 | UPPER_SNAKE_CASE | `API_BASE_URL`, `MAX_ITEMS` |
+| 型別/介面 | PascalCase | `User`, `PostMetadata` |
+| Hook | camelCase (use 開頭) | `useTheme`, `usePosts` |
+
+### CSS/SCSS (BEM 命名法)
+
+```scss
+// Block (區塊)
+.article-card { }
+
+// Element (元素)
+.article-card__title { }
+.article-card__excerpt { }
+
+// Modifier (修飾符)
+.article-card--featured { }
+.article-card--large { }
+```
+
+### Git Commit 規範
+
+使用 **Conventional Commits** 格式:
 
 ```bash
-/generate-prp INITIAL.md
+# Type 類型
+feat:      新功能
+fix:       Bug 修復
+docs:      文件更新
+style:     樣式調整
+refactor:  重構
+perf:      效能優化
+test:      測試
+chore:     雜項
 
+# 範例
+git commit -m "feat: 新增文章搜尋功能"
+git commit -m "fix: 修復標籤篩選錯誤"
+git commit -m "style: 調整 Navbar 樣式"
 ```
 
+---
 
+## 🎯 核心功能
 
-### 4. Execute the PRP
+### 🏠 首頁 (Home Page)
+- Hero Section 橫幅
+- 文章卡片列表
+- 側邊欄 (熱門標籤 + 推薦閱讀)
+- 分頁功能
 
-產生後，直接執行 PRP 進行實作：
+### 📄 文章頁 (Post Page)
+- 文章標題、日期、標籤
+- Markdown 內容渲染
+- 目錄 (TOC)
+- 上一篇/下一篇導覽
+- 留言系統 (Giscus/Disqus)
+
+### 🏷️ 標籤頁 (Tags Page)
+- 所有標籤列表
+- 每個標籤的文章數量
+- 標籤文章篩選
+
+### 👩‍💻 關於頁 (About Page)
+- 個人簡介與頭像
+- 技能展示
+- 社群連結 (GitHub, LinkedIn, Twitter)
+
+### 📬 聯絡頁 (Contact Page)
+- 聯絡表單
+- 直接聯絡方式 (Email, X, LinkedIn)
+
+---
+
+## 🌐 部署
+
+### Vercel (推薦)
 
 ```bash
-/execute-prp PRPs/your-feature-name.md
+# 1. 安裝 Vercel CLI
+npm i -g vercel
+
+# 2. 登入
+vercel login
+
+# 3. 部署
+vercel
 ```
 
+### 其他平台
 
-### 撰寫有效 INITIAL.md 的技巧
+- **Netlify**: 支援 Next.js
+- **Railway**: 支援 Node.js
+- **自架**: 使用 `npm run build && npm run start`
 
-**FEATURE**: 要具體明確：
+---
 
-- ❌ 「建立一個爬蟲」
-- ✅ 「建立一個非同步爬蟲，使用 BeautifulSoup 抓取電商商品資料，支援速率限制，並將結果存入 PostgreSQL」
+## 📚 參考資源
 
-**EXAMPLES**: Leverage the examples/ folder
+### 官方文件
+- [Next.js Documentation](https://nextjs.org/docs)
+- [React Documentation](https://react.dev/)
+- [TypeScript Documentation](https://www.typescriptlang.org/docs/)
+- [SCSS Documentation](https://sass-lang.com/documentation/)
 
-- 放在 examples/ 內
-- 指出要模仿哪些模式
-- 包含「應該怎麼做」與「不應該怎麼做」
- 
-**DOCUMENTATION**: Include all relevant resources
+### 設計參考
+- [互動式設計原型](blog-design-prototype.html)
+- [CLAUDE.md - 完整專案文件](CLAUDE.md)
 
-- API 官方文件
-- 函式庫教學
-- MCP server 文件
-- 資料庫結構
+---
 
-**OTHER CONSIDERATIONS**: Capture important details
+## 🤝 貢獻指南
 
-- 認證需求
-- 流量限制
-- 常見陷阱
-- 效能需求
+歡迎提交 Issue 或 Pull Request!
 
+### 開發流程
 
+```bash
+# 1. Fork 專案
+# 2. 建立分支
+git checkout -b feat/your-feature
 
-## 有效使用範例（Using Examples Effectively）
+# 3. 開發功能
+# 4. 提交變更
+git commit -m "feat: 新增功能"
 
-examples/ 資料夾對成功至關重要。
-AI 程式助理在能看到可遵循的模式時，表現會好得多。
+# 5. 推送分支
+git push origin feat/your-feature
 
-### 範例中應包含的內容（What to Include in Examples）
-
-1. **程式結構模式**
-   - 模組的組織方式
-   - 匯入（import）的慣例
-   - 類別/函式的設計模式
-
-2. **測試模式**
-   - 測試檔案的結構
-   - 模擬（mocking）的方式
-   - 斷言（assertion）的風格
-3. **整合模式**
-   - API 客戶端實作方式
-   - 資料庫連線方式
-   - 驗證（authentication）流程
-4. **CLI 模式**
-   - 參數解析（argument parsing）
-   - 輸出格式化
-   - 錯誤處理方式
-  
-###範例結構
-
-```
-examples/
-├── README.md           # 說明每個範例展示的內容
-├── cli.py              # CLI 實作模式
-├── agent/              # Agent 架構模式
-│   ├── agent.py        # Agent 建立模式
-│   ├── tools.py        # 工具實作模式
-│   └── providers.py    # 多供應商模式
-└── tests/              # 測試模式
-    ├── test_agent.py   # 單元測試模式
-    └── conftest.py     # Pytest 設定
-
+# 6. 建立 Pull Request
 ```
 
-## 最佳實踐
+### 審查重點
+- [ ] 符合命名規範
+- [ ] 型別定義完整
+- [ ] 有適當註解
+- [ ] 符合設計系統
+- [ ] 通過 ESLint 檢查
 
-### 1. 在 INITIAL.md 中明確說明
+---
 
-- 不要假設 AI 了解你的偏好
-- 包含具體的需求與限制條件
-- 充分引用範例
+## 📄 授權
 
-### 2. 提供完整的範例
+MIT License - 詳見 [LICENSE](./LICENSE)
 
-- 更多範例 = 更好的實作結果
-- 展示「應該怎麼做」以及「不應該怎麼做」
-- 包含錯誤處理模式
+---
 
-### 3. 使用驗證關卡 (Validation Gates)
+## 👤 作者
 
-- PRP 必須包含需要通過的測試指令
-- AI 會不斷迭代直到所有驗證成功
-- 確保程式在第一次交付時即可正常運作
+**kimi-kiki**
 
-### 4. 善用文件資源
+- GitHub: [@kimi-kiki](https://github.com/kimi-kiki)
+- Email: katytsai.git@gmail.com
 
-- 包含官方 API 文件
-- 加入 MCP server 的相關資源
-- 引用具體的文件章節
+---
 
-### 5. 自訂 CLAUDE.md
+## 🙏 致謝
 
-- 加入你的專案慣例
-- 包含專案特有的規則
-- 定義程式碼風格標準
+- Next.js 團隊提供優秀的框架
+- React 社群的持續支援
+- 所有開源貢獻者
 
-## Resources
+---
 
-- [Claude Code Documentation](https://docs.anthropic.com/en/docs/claude-code)
-- [Context Engineering Best Practices](https://www.philschmid.de/context-engineering)
+**Built with ❤️ and Next.js**
