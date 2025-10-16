@@ -441,7 +441,7 @@ MIT License - 詳見 [LICENSE](./LICENSE)
 
 ### kimi-kiki
 
-- GitHub: [@kimi-kiki](https://github.com/kimi-kiki)
+- GitHub: [@katy-tsai](https://github.com/kimi-kiki)
 - Email: <katytsai.git@gmail.com>
 
 ---

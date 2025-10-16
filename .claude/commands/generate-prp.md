@@ -56,6 +56,7 @@ uv run pytest tests/ -v
 
 ## Output
 Save as: `PRPs/{feature-name}.md`
+完成後在原檔案上註記prps的存放位置，及完成時間
 
 ## Quality Checklist
 - [ ] All necessary context included

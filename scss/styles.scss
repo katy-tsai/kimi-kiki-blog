@@ -21,6 +21,9 @@
 @use 'components/hero-banner';
 @use 'components/sidebar';
 @use 'components/toc';
+@use 'components/search-bar';
+@use 'components/mobile-drawer';
+@use 'components/search-results';
 
 /* Page Styles */
 @use 'pages/home';

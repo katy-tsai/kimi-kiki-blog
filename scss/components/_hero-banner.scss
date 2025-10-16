@@ -23,6 +23,7 @@
   &__content {
     max-width: var(--max-width-3xl);
     margin: 0 auto;
+
   }
 
   &__title {
@@ -31,6 +32,7 @@
     margin-bottom: var(--spacing-4);
     line-height: var(--line-height-tight);
     color: var(--color-text-inverse);
+    
 
     @media (max-width: 768px) {
       font-size: var(--font-size-3xl);
@@ -57,9 +59,12 @@
     height: auto;
     bottom: 0;
     right: 0px;
-    transform: translate(50%,80px);
-
-  
+    transform: translate(20%,80px);
+    @media (max-width: 768px) {
+      display: none;
+      
+    }
+   
   }
 
   .button{

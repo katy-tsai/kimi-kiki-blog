@@ -6,18 +6,16 @@
  * Features:
  * - Hero banner
  * - Sidebar with hot tags and recommended posts
- * - Article list
+ * - Article list with search functionality
  * - Responsive layout
  *
- * Reason: Server component that fetches posts and displays them
+ * Reason: Server component that fetches data and passes to client components
  */
 
 import type { Metadata } from 'next'
-
-import { ArticleList } from '@/components/article/ArticleList'
-import { HeroBanner } from '@/components/home/HeroBanner'
-import { Sidebar } from '@/components/layout/Sidebar'
-import { getAllTags, getSortedPosts } from '@/lib/posts'
+import { Suspense } from 'react'
+import { HomeContent } from '@/components/home/HomeContent'
+import { getAllTags, getSortedPosts, getRecommendedPosts } from '@/lib/posts'
 
 export const metadata: Metadata = {
   title: 'Home',
@@ -25,34 +23,18 @@ export const metadata: Metadata = {
 }
 
 export default async function HomePage() {
-  // Reason: Get data for homepage and sidebar
   const allTags = await getAllTags()
   const posts = await getSortedPosts()
-  const recommendedPosts = posts.filter((post) => post.featured).slice(0, 3)
-  const finalRecommendedPosts =
-    recommendedPosts.length >= 3
-      ? recommendedPosts
-      : [...recommendedPosts, ...posts.slice(0, 3 - recommendedPosts.length)]
+  const recommendedPosts = getRecommendedPosts(posts)
 
 
   return (
-    <main className="home">
-      {/* Hero Banner */}
-
-      <Sidebar tags={allTags} recommendedPosts={finalRecommendedPosts} />
-      {/* Main Content with Sidebar */}
-      <div className="home__content-wrapper">
-        <div className="home__hero-container">
-          <HeroBanner />
-        </div>
-        <div className="home__content">
-          {/* Articles Section */}
-          <section className="home__articles">
-            <h2 className="home__articles-title">📝 最新文章</h2>
-            <ArticleList posts={posts} />
-          </section>
-        </div>
-      </div>
-    </main>
+    <Suspense fallback={<div>載入中...</div>}>
+      <HomeContent
+        initialPosts={posts}
+        allTags={allTags}
+        recommendedPosts={recommendedPosts}
+      />
+    </Suspense>
   )
 }

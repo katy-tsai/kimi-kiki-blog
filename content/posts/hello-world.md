@@ -9,7 +9,6 @@ author:
   name: kimi-kiki
   avatar: /images/avatar.jpg
 featured: true
-views: 1234
 ---
 
 # Hello World

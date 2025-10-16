@@ -13,7 +13,7 @@
  * Reason: Dynamic route for individual blog posts
  */
 
-import { getPostBySlug, getAllPosts, getSortedPosts, getAllTags } from '@/lib/posts'
+import { getPostBySlug, getAllPosts, getSortedPosts, getAllTags, getRecommendedPosts } from '@/lib/posts'
 import { notFound } from 'next/navigation'
 import { format } from 'date-fns'
 import Link from 'next/link'
@@ -22,6 +22,8 @@ import { TagBadge } from '@/components/ui/TagBadge'
 import { TOC } from '@/components/article/TOC'
 import { Clock } from 'lucide-react'
 import { Sidebar } from '@/components/layout/Sidebar'
+import GiscusBoard from '@/components/giscus/GiscusBoard';
+
 
 // CRITICAL: Next.js 15 - params is a Promise
 interface PostPageProps {
@@ -75,11 +77,10 @@ export default async function PostPage({ params }: PostPageProps) {
   // Reason: Get data for sidebar
   const allTags = await getAllTags()
   const allPosts = await getSortedPosts()
-  const recommendedPosts = allPosts.filter((post) => post.featured).slice(0, 3)
-  const finalRecommendedPosts =
-    recommendedPosts.length >= 3
-      ? recommendedPosts
-      : [...recommendedPosts, ...allPosts.slice(0, 3 - recommendedPosts.length)]
+
+
+  const recommendedPosts = getRecommendedPosts(allPosts)
+
 
   if (slug === "lastest") {
     slug = allPosts[0].slug
@@ -105,7 +106,7 @@ export default async function PostPage({ params }: PostPageProps) {
 
   return (
     <div className="post-page">
-      <Sidebar tags={allTags} recommendedPosts={finalRecommendedPosts} />
+      <Sidebar tags={allTags} recommendedPosts={recommendedPosts} />
       <article className="post-container">
         {/* Post Header */}
         <header className="post-header">
@@ -152,13 +153,40 @@ export default async function PostPage({ params }: PostPageProps) {
         </nav>
 
         {/* Comments Placeholder */}
-        <section className="post-comments">
-          <h3 className="post-comments__title">💬 留言討論</h3>
-          <p className="post-comments__description">
-            使用 GitHub 帳號登入後即可留言 (整合 Giscus)
-          </p>
-        </section>
+        <GiscusBoard slug={slug} />
       </article>
     </div>
   )
+
+
 }
+{/* <Giscus
+      id="comments"
+      repo="giscus/giscus-component"
+      repoId="MDEwOlJlcG9zaXRvcnkzOTEzMTMwMjA="
+      category="Announcements"
+      categoryId="DIC_kwDOF1L2fM4B-hVS"
+      mapping="specific"
+      term="Welcome to @giscus/react component!"
+      reactionsEnabled="1"
+      emitMetadata="0"
+      inputPosition="top"
+      theme="light"
+      lang="en"
+      loading="lazy"
+    /> */}
+{/* <script src="https://giscus.app/client.js"
+        data-repo="katy-tsai/kimi-kiki-blog"
+        data-repo-id="R_kgDOQCGfTQ"
+        data-category="General"
+        data-category-id="DIC_kwDOQCGfTc4Cwtjr"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="zh-TW"
+        crossorigin="anonymous"
+        async>
+</script> */}

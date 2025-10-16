@@ -44,9 +44,7 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
             ))}
           </div>
           <div className="article-card__info">
-            {post.views && (
-              <span className="article-card__views">👁️ {post.views.toLocaleString()}</span>
-            )}
+
             <time className="article-card__date">{formattedDate}</time>
           </div>
         </div>

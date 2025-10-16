@@ -1,0 +1,49 @@
+.search-results {
+  margin-top: var(--spacing-8);
+
+  &__header {
+    margin-bottom: var(--spacing-6);
+    padding-bottom: var(--spacing-4);
+    border-bottom: 2px solid var(--color-border-primary);
+  }
+
+  &__title {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    margin: 0 0 var(--spacing-2) 0;
+  }
+
+  &__count {
+    font-size: var(--font-size-base);
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+
+  &__query {
+    color: var(--color-brand-primary);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  &__empty {
+    text-align: center;
+    padding: var(--spacing-12) var(--spacing-6);
+
+    p {
+      font-size: var(--font-size-lg);
+      color: var(--color-text-secondary);
+      margin: 0 0 var(--spacing-4) 0;
+
+      &:first-child {
+        font-size: var(--font-size-xl);
+        font-weight: var(--font-weight-semibold);
+        color: var(--color-text-primary);
+      }
+    }
+  }
+
+  &__hint {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-tertiary);
+  }
+}

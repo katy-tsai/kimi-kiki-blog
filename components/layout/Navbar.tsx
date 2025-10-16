@@ -2,59 +2,112 @@
 /**
  * Navbar Component
  *
- * Fixed navigation bar with logo, navigation links, and theme switcher.
+ * Fixed navigation bar with logo, navigation links, search bar, and theme switcher.
  *
  * Features:
  * - Fixed positioning at top of page
- * - Responsive design
+ * - Responsive design with mobile drawer
+ * - Search functionality integrated
  * - Theme switcher integration
  * - Navigation links for Tags, About, Contact pages
  */
 
+import { useState } from 'react'
 import Link from 'next/link'
-import { ThemeSwitcher } from './ThemeSwitcher'
 import { usePathname } from 'next/navigation'
+import { Menu } from 'lucide-react'
+import { ThemeSwitcher } from './ThemeSwitcher'
+import { SearchBar } from './SearchBar'
+import { MobileDrawer } from './MobileDrawer'
+import { useSearch } from '@/hooks/useSearch'
 
 
 export const Navbar = () => {
   const pathname = usePathname()
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false)
+  const { query, handleSearch, clearSearch } = useSearch([])
+
+  const navItems = [
+    { href: '/', label: '首頁' },
+    { href: '/posts/lastest', label: '文章頁' },
+    { href: '/tags', label: '標籤頁' },
+    // { href: '/about', label: '關於我' },
+    // { href: '/contact', label: '聯絡我' },
+  ]
+
   return (
-    <nav className="navbar">
-      <div className="navbar__container">
-        <Link href="/" className="navbar__logo">
-          kimi-kiki
-        </Link>
+    <>
+      <header className="navbar">
+        <div className="navbar__container">
+          <Link href="/" className="navbar__logo">
+            kimi-kiki
+          </Link>
 
-        <ul className="navbar__nav ml-20">
-          <li className="navbar__nav-item">
-            <Link href="/" className={["navbar__nav-link", pathname === "/" ? 'active' : ""].join(" ")}>
-              首頁
-            </Link>
-          </li>
-          <li className="navbar__nav-item">
-            <Link href="/posts/lastest" className={["navbar__nav-link", pathname === "/posts/lastest" ? 'active' : ""].join(" ")}>
-              文章頁
-            </Link>
-          </li>
-          <li className="navbar__nav-item">
-            <Link href="/tags" className={["navbar__nav-link", pathname === "/tags" ? 'active' : ""].join(" ")}>
-              標籤頁
-            </Link>
-          </li>
-          <li className="navbar__nav-item">
-            <Link href="/about" className={["navbar__nav-link", pathname === "/about" ? 'active' : ""].join(" ")}>
-              關於我
-            </Link>
-          </li>
-          <li className="navbar__nav-item">
-            <Link href="/contact" className={["navbar__nav-link", pathname === "/contact" ? 'active' : ""].join(" ")}>
-              聯絡我
-            </Link>
-          </li>
-        </ul>
+          <nav className="navbar__nav">
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={pathname === item.href ? 'active' : ''}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
 
-        <ThemeSwitcher />
-      </div>
-    </nav >
+          <div className="navbar__actions">
+            <SearchBar
+              onSearch={handleSearch}
+              onClear={clearSearch}
+              initialValue={query}
+              className="navbar__search"
+            />
+
+            <ThemeSwitcher />
+
+            <button
+              type="button"
+              onClick={() => setIsDrawerOpen(true)}
+              className="navbar__menu-button"
+              aria-label="開啟選單"
+              aria-expanded={isDrawerOpen}
+            >
+              <Menu aria-hidden="true" />
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <MobileDrawer
+        isOpen={isDrawerOpen}
+        onClose={() => setIsDrawerOpen(false)}
+      >
+        <div className="mobile-drawer__search">
+          <SearchBar
+            onSearch={(value) => {
+              handleSearch(value)
+              if (value) {
+                setIsDrawerOpen(false)
+              }
+            }}
+            onClear={clearSearch}
+            initialValue={query}
+          />
+        </div>
+
+        <nav className="mobile-drawer__nav">
+          {navItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={pathname === item.href ? 'active' : ''}
+              onClick={() => setIsDrawerOpen(false)}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+      </MobileDrawer>
+    </>
   )
 }

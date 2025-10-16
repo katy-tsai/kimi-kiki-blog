@@ -7,6 +7,7 @@
  */
 
 import type { Metadata } from 'next'
+import { Suspense } from 'react'
 import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
 import View from '@/components/layout/View'
@@ -28,9 +29,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="zh-TW">
-      <body>
-        <Navbar />
+    <html lang="zh-TW" suppressHydrationWarning>
+      <body suppressHydrationWarning>
+        <Suspense fallback={<div style={{ height: 'var(--navbar-height)' }} />}>
+          <Navbar />
+        </Suspense>
         <main className="main-content">
           <View>
             {children}

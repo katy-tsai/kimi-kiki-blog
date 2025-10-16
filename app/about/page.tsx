@@ -15,7 +15,7 @@
 import type { Metadata } from 'next'
 import { Github, Twitter, Linkedin } from 'lucide-react'
 import { Sidebar } from '@/components/layout/Sidebar'
-import { getAllTags, getSortedPosts } from '@/lib/posts'
+import { getAllTags, getSortedPosts, getRecommendedPosts } from '@/lib/posts'
 
 export const metadata: Metadata = {
   title: 'About',
@@ -26,26 +26,20 @@ export default async function AboutPage() {
   // Reason: Get data for sidebar
   const allTags = await getAllTags()
   const posts = await getSortedPosts()
-  const recommendedPosts = posts.filter((post) => post.featured).slice(0, 3)
-  const finalRecommendedPosts =
-    recommendedPosts.length >= 3
-      ? recommendedPosts
-      : [...recommendedPosts, ...posts.slice(0, 3 - recommendedPosts.length)]
+  const recommendedPosts = getRecommendedPosts(posts)
   const techStack = [
     'React',
     'TypeScript',
     'Next.js',
     'Node.js',
-    'Python',
-    'Docker',
-    'AWS',
+    'SCSS',
     'Git',
   ]
 
 
   return (
     <div className="about-page">
-      <Sidebar tags={allTags} recommendedPosts={finalRecommendedPosts} />
+      <Sidebar tags={allTags} recommendedPosts={recommendedPosts} />
       <div className="about-container">
         {/* Profile Section */}
         <section className="about__profile">

@@ -119,3 +119,20 @@ export async function getAllTags(): Promise<string[]> {
   // Reason: Return unique tags, sorted alphabetically
   return Array.from(new Set(tags)).sort()
 }
+
+export function getRecommendedPosts(allPosts: Post[]): Post[] {
+  console.log('allPosts', allPosts.length);
+  if (allPosts.length <= 3) {
+    return allPosts;
+  }
+  const recommendedPosts = allPosts.filter((post) => post.featured).slice(0, 3)
+
+  const finalRecommendedPosts =
+    recommendedPosts.length >= 3
+      ? recommendedPosts
+      : [...recommendedPosts, ...allPosts.slice(0, 3 - recommendedPosts.length)]
+
+
+  return finalRecommendedPosts;
+
+}

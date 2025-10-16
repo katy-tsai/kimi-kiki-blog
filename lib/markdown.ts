@@ -7,11 +7,13 @@
  * - gray-matter: Parse YAML frontmatter
  * - remark: Convert markdown to HTML
  * - remark-html: HTML output plugin for remark
+ * - remark-plantuml: PlantUML diagram rendering plugin
  */
 
 import matter from 'gray-matter'
 import { remark } from 'remark'
 import html from 'remark-html'
+import remarkPlantUML from './remark-plantuml'
 import type { PostFrontmatter } from '@/types/post'
 
 interface ParsedMarkdown {
@@ -51,8 +53,10 @@ export async function parseMarkdown(content: string): Promise<ParsedMarkdown> {
     const { data, content: markdownContent } = matter(content)
 
     // Reason: remark converts markdown to HTML with plugins
+    // CRITICAL: Plugin order matters - remarkPlantUML before html
     const processedContent = await remark()
-      .use(html)
+      .use(remarkPlantUML) // Transform PlantUML code blocks to HTML img tags
+      .use(html, { sanitize: false }) // Convert markdown to HTML (allow all HTML including img tags)
       .process(markdownContent)
 
     let htmlContent = processedContent.toString()
