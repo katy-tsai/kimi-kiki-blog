@@ -1,20 +1,20 @@
 ---
-title: 我用 Claude Code 開發完整 Blog：從構想到部署的全自動流程
+title: Claude Code 開發指南：如何用 AI 快速構建個人技術部落格
 excerpt: 前端工程師該如何和AI配合，開發及建立符合spec的 Web 應用程式
 date: 2025-10-15
 tags:
   - AI
   - Frontend
-  - cloude code
+  - Cloude Code
 author:
   name: kimi-kiki
   avatar: /images/avatar.jpg
 featured: true
 ---
 
->自從 2022 年 ChatGPT 橫空出世以來，人工智慧的發展可謂日新月異。如今，AI 不僅能生成文字、作曲、畫圖，甚至能撰寫程式碼，讓整個軟體開發世界發生了翻天覆地的改變。
-面對這股浪潮，許多工程師開始憂慮：我們會被 AI 取代嗎？程式開發的主導權，是否正逐漸被 AI 奪走？
-然而，與其恐懼，不如學會與 AI 共創。如何與 AI 高效協同開發，快速構建出既具擴展性又易於維護的系統架構，正成為新時代工程師的核心競爭力。
+>當 ChatGPT 改變了整個開發世界，許多人開始害怕：「AI 會不會取代工程師？」
+我反而想知道另一個問題：「如果 AI 是我的夥伴，我能和它一起完成整個專案嗎？」
+於是，我啟動了這個實驗 —— 利用 Claude Code 和 Context Engineering 方法，從 0 到 1 打造一個完整的 技術部落格網站。
 
 ## 一、前言
 為了學會怎麼和 AI 一起高效開發，我決定動手做一個實驗專案 —— 「技術部落格」。
@@ -322,10 +322,27 @@ AI 寫的程式不會一次完美。 和真實的開發過程一樣，需經過�
 若問題複雜，則先理出思路，再開需求spec , 依需求spec產生prps, 在執行prps的步驟處理，
 
 ## 六、部署
-根據AI推薦最快的部署方式
-### 連結 GitHub 自動部署
-- step1: blog push 到 GitHub 
-- step2: 登入 https://vercel.com   
-- step3: 點選 repo → Vercel 自動偵測 Next.js → 點「Deploy」 
-- step4:約 1 分鐘後完成，會得到一個網址。  
 
+根據 AI 推薦的最快部署方式：
+
+### Step 1：Push 至 GitHub
+
+將專案上傳到 GitHub 倉庫。
+
+### Step 2：登入 Vercel
+
+訪問 https://vercel.com 並使用 GitHub 帳號登入。
+
+### Step 3：導入專案
+
+點選 repo → Vercel 會自動偵測 Next.js 框架 → 點擊「Deploy」按鈕。
+
+### Step 4：完成
+
+約 1 分鐘後完成部署，你將獲得一個可用的網址。
+
+## 七、結語
+
+這次用 Claude Code 建立 Blog 的過程，讓我真正體會到「AI 不是取代工程師，而是讓我們更強」。
+當 AI 幫我處理繁瑣的設定、架構生成，我能把時間留給更有價值的事：設計體驗、思考內容、優化架構。
+未來，我會持續探索如何用 Context Engineering 打造更聰明的開發流程，也期待分享更多「人機共創」的實戰案例。

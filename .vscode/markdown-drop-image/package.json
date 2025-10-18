@@ -1,0 +1,39 @@
+{
+    "name": "markdown-drop-image",
+    "displayName": "Markdown Drop Image",
+    "description": "拖拉圖片到 Markdown 時自動複製到 /public/images 並插入 Markdown 語法（含時間戳命名）",
+    "version": "0.0.5",
+    "publisher": "kimi-kiki",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/kimi-kiki/kimi-kiki-blog"
+    },
+    "engines": {
+        "vscode": "^1.80.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onLanguage:markdown"
+    ],
+    "main": "./extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "markdownDropImage.enable",
+                "title": "Enable Markdown Drop Image"
+            }
+        ],
+        "configuration": {
+            "title": "Markdown Drop Image",
+            "properties": {
+                "markdownDropImage.enabled": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Enable automatic image drop handling"
+                }
+            }
+        }
+    }
+}

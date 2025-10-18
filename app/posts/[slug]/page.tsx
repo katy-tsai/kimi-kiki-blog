@@ -35,8 +35,8 @@ interface PostPageProps {
  *
  * Reason: Pre-render all blog posts at build time for optimal performance
  */
-export async function generateStaticParams() {
-  const posts = await getAllPosts()
+export function generateStaticParams() {
+  const posts = getAllPosts()
   return posts.map((post) => ({
     slug: post.slug,
   }))
@@ -51,7 +51,7 @@ export async function generateMetadata({
   params,
 }: PostPageProps): Promise<Metadata> {
   const { slug } = await params
-  const post = await getPostBySlug(slug)
+  const post = getPostBySlug(slug)
 
   if (!post) {
     return {
@@ -75,21 +75,19 @@ export default async function PostPage({ params }: PostPageProps) {
   let { slug } = await params
 
   // Reason: Get data for sidebar
-  const allTags = await getAllTags()
-  const allPosts = await getSortedPosts()
-
+  const allTags = getAllTags()
+  const allPosts = getSortedPosts()
 
   const recommendedPosts = getRecommendedPosts(allPosts)
-
 
   if (slug === "lastest") {
     slug = allPosts[0].slug
   }
-  console.log("slug", slug)
 
-  let post = await getPostBySlug(slug)
+  let post = getPostBySlug(slug)
 
   // Reason: Show 404 if post not found
+  // CRITICAL: getPostBySlug now returns undefined (not null)
   if (!post) {
     notFound()
   }
@@ -128,12 +126,13 @@ export default async function PostPage({ params }: PostPageProps) {
         </header>
 
         {/* TOC Component */}
-        <TOC content={post.content} />
+        <TOC content={post.body.html} />
 
         {/* Post Content */}
+        {/* CRITICAL: post.body.html contains processed HTML from Contentlayer */}
         <div
           className="post-content"
-          dangerouslySetInnerHTML={{ __html: post.content }}
+          dangerouslySetInnerHTML={{ __html: post.body.html }}
         />
 
         {/* Prev/Next Navigation */}

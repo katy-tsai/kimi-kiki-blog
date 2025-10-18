@@ -1,4 +1,4 @@
-import { Post } from './post'
+import { Post } from '@contentlayer/generated'
 
 export interface SearchState {
   query: string

@@ -28,8 +28,8 @@ interface TagPageProps {
  *
  * Reason: Pre-render all tag pages at build time
  */
-export async function generateStaticParams() {
-  const tags = await getAllTags()
+export function generateStaticParams() {
+  const tags = getAllTags()
   return tags.map((tag) => ({
     tag,
   }))
@@ -53,7 +53,7 @@ export async function generateMetadata({
 
 export default async function TagPage({ params }: TagPageProps) {
   const { tag } = await params
-  const allPosts = await getAllPosts()
+  const allPosts = getAllPosts()
 
   // Reason: Filter posts by tag
   const filteredPosts = allPosts.filter((post) => post.tags.includes(tag))

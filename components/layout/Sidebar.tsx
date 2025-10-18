@@ -19,7 +19,7 @@ import { useState } from 'react'
 import { TagBadge } from '@/components/ui/TagBadge'
 import Link from 'next/link'
 import { format } from 'date-fns'
-import type { Post } from '@/types/post'
+import type { Post } from '@contentlayer/generated'
 
 interface SidebarProps {
   tags: string[]

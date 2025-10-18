@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, KeyboardEvent, ChangeEvent } from 'react'
+import { useState, useEffect, KeyboardEvent, ChangeEvent } from 'react'
 import { Search, X } from 'lucide-react'
 
 interface SearchBarProps {
@@ -20,6 +20,12 @@ export const SearchBar: React.FC<SearchBarProps> = ({
 }) => {
   const [value, setValue] = useState(initialValue)
   const [isFocused, setIsFocused] = useState(false)
+
+  // CRITICAL: Sync local state with initialValue when it changes
+  // Reason: When URL changes (e.g., user clicks back button), update input
+  useEffect(() => {
+    setValue(initialValue)
+  }, [initialValue])
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value

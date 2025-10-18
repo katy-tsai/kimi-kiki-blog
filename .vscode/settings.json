@@ -1,0 +1,49 @@
+{
+  "markdown.preview.baseUrl": "${workspaceFolder}/public",
+  // ========================================
+  // Markdown 圖片拖拉設定
+  // ========================================
+  // 拖拉圖片到 Markdown 時，自動複製到指定路徑
+  "markdown.copyFiles.destination": {
+    "**/*.md": "/public/images/"
+  },
+  // 防止圖片在新 tab 中打開
+  "workbench.editor.enablePreview": false,
+  // 編輯器拖放行為：複製而非移動
+  "editor.dragAndDrop": true,
+  // ========================================
+  // Paste Image 擴充功能設定 (mushan.vscode-paste-image)
+  // ========================================
+  // 圖片儲存路徑（使用絕對路徑模式）
+  "pasteImage.path": "${projectRoot}/public/images",
+  // 基礎路徑（設為專案根目錄）
+  "pasteImage.basePath": "${projectRoot}",
+  // Markdown 中插入的路徑格式（使用 /public/images/ 讓 VSCode Preview 正常顯示）
+  "pasteImage.prefix": "/public/images/",
+  // 插入路徑格式（完整 Markdown 語法）
+  "pasteImage.insertPattern": "![${imageFileNameWithoutExt}](${prefix}${imageFileName})",
+  // 預設檔名（使用時間戳記）
+  "pasteImage.defaultName": "Y-MM-DD-HH-mm-ss",
+  // 檔名前綴（不使用文件名前綴，保持簡潔）
+  "pasteImage.namePrefix": "",
+  // 檔名後綴
+  "pasteImage.nameSuffix": "",
+  // 插入後顯示輸入框可修改檔名（關閉以自動插入完整語法）
+  "pasteImage.showFilePathConfirmInputBox": false,
+  // 編碼路徑（處理中文等特殊字元）
+  "pasteImage.encodePath": "urlEncode",
+  // ========================================
+  // Markdown 編輯器設定
+  // ========================================
+  // 編輯 Markdown 時顯示預覽
+  "markdown.preview.doubleClickToSwitchToEditor": false,
+  // Markdown 檔案自動換行
+  "[markdown]": {
+    "editor.wordWrap": "on",
+    "editor.quickSuggestions": {
+      "comments": "on",
+      "strings": "on",
+      "other": "on"
+    }
+  }
+}

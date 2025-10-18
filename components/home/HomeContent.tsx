@@ -1,6 +1,6 @@
 'use client'
 
-import { Post } from '@/types/post'
+import { Post } from '@contentlayer/generated'
 import { ArticleList } from '@/components/article/ArticleList'
 import { HeroBanner } from '@/components/home/HeroBanner'
 import { Sidebar } from '@/components/layout/Sidebar'

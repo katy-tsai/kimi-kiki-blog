@@ -1,55 +1,59 @@
-import { useState, useMemo } from 'react'
-import { useSearchParams, useRouter, usePathname } from 'next/navigation'
-import { useDebouncedCallback } from 'use-debounce'
-import { Post } from '@/types/post'
+/**
+ * useSearch Hook
+ *
+ * Client-side search functionality for blog posts.
+ *
+ * PATTERN: URL as single source of truth
+ * - Reads query from URL search params
+ * - Filters posts based on query
+ * - No local state for query (read from URL only)
+ *
+ * Features:
+ * - Full-text search across title, excerpt, content, and tags
+ * - Case-insensitive search
+ * - Returns filtered results
+ *
+ * Usage:
+ * ```tsx
+ * const { query, results, isSearching } = useSearch(posts)
+ * ```
+ *
+ * Reason: Separates search logic from UI components
+ */
+
+import { useMemo } from 'react'
+import { useSearchParams } from 'next/navigation'
+import { Post } from '@contentlayer/generated'
 
 export function useSearch(initialPosts: Post[] = []) {
   const searchParams = useSearchParams()
-  const router = useRouter()
-  const pathname = usePathname()
 
-  const [query, setQuery] = useState(searchParams.get('q') || '')
+  // CRITICAL: Read query from URL, not from local state
+  // Reason: URL is the single source of truth
+  const query = searchParams.get('q') || ''
 
-  const debouncedUpdateURL = useDebouncedCallback((value: string) => {
-    const params = new URLSearchParams(searchParams.toString())
-    if (value) {
-      params.set('q', value)
-    } else {
-      params.delete('q')
-    }
-    router.replace(`${pathname}?${params.toString()}`)
-  }, 500)
-
-  const handleSearch = (value: string) => {
-    setQuery(value)
-    debouncedUpdateURL(value)
-  }
-
+  // Reason: Filter posts based on query
+  // GOTCHA: useMemo prevents re-filtering on every render
   const results = useMemo(() => {
     if (!query.trim()) return initialPosts
 
     const lowerQuery = query.toLowerCase()
-    return initialPosts.filter(post =>
-      post.title.toLowerCase().includes(lowerQuery) ||
-      post.excerpt.toLowerCase().includes(lowerQuery) ||
-      post.content.toLowerCase().includes(lowerQuery) ||
-      post.tags.some(tag => tag.toLowerCase().includes(lowerQuery))
-    )
-  }, [query, initialPosts])
 
-  const clearSearch = () => {
-    setQuery('')
-    const params = new URLSearchParams(searchParams.toString())
-    params.delete('q')
-    router.replace(`${pathname}?${params.toString()}`)
-  }
+    return initialPosts.filter(post => {
+      // Search in title, excerpt, content body, and tags
+      return (
+        post.title.toLowerCase().includes(lowerQuery) ||
+        post.excerpt.toLowerCase().includes(lowerQuery) ||
+        post.body.raw.toLowerCase().includes(lowerQuery) ||
+        post.tags.some(tag => tag.toLowerCase().includes(lowerQuery))
+      )
+    })
+  }, [query, initialPosts])
 
   return {
     query,
     results,
     isSearching: query.length > 0,
     resultCount: results.length,
-    handleSearch,
-    clearSearch,
   }
 }

@@ -12,7 +12,7 @@
  */
 
 import { ArticleCard } from './ArticleCard'
-import type { Post } from '@/types/post'
+import type { Post } from '@contentlayer/generated'
 
 interface ArticleListProps {
   posts: Post[]

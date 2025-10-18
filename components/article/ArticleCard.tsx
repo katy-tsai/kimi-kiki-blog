@@ -15,7 +15,7 @@
 import Link from 'next/link'
 import { format } from 'date-fns'
 import { TagBadge } from '@/components/ui/TagBadge'
-import type { Post } from '@/types/post'
+import type { Post } from '@contentlayer/generated'
 
 interface ArticleCardProps {
   post: Post

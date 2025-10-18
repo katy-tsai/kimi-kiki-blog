@@ -22,9 +22,9 @@ export const metadata: Metadata = {
   description: '技術部落格 - 分享程式開發與學習心得',
 }
 
-export default async function HomePage() {
-  const allTags = await getAllTags()
-  const posts = await getSortedPosts()
+export default function HomePage() {
+  const allTags = getAllTags()
+  const posts = getSortedPosts()
   const recommendedPosts = getRecommendedPosts(posts)
 
 

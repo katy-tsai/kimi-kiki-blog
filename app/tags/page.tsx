@@ -23,12 +23,12 @@ export const metadata: Metadata = {
   description: '瀏覽所有文章標籤',
 }
 
-export default async function TagsPage() {
-  const allTags = await getAllTags()
-  const allPosts = await getAllPosts()
+export default function TagsPage() {
+  const allTags = getAllTags()
+  const allPosts = getAllPosts()
 
   // Reason: Get recommended posts for sidebar
-  const posts = await getSortedPosts()
+  const posts = getSortedPosts()
   const recommendedPosts = posts.filter((post) => post.featured).slice(0, 3)
   const finalRecommendedPosts =
     recommendedPosts.length >= 3

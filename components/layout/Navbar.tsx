@@ -7,25 +7,54 @@
  * Features:
  * - Fixed positioning at top of page
  * - Responsive design with mobile drawer
- * - Search functionality integrated
+ * - Search functionality integrated via URL params
  * - Theme switcher integration
  * - Navigation links for Tags, About, Contact pages
+ *
+ * PATTERN: URL as single source of truth
+ * Reason: Navbar only updates URL, HomeContent reads URL and performs search
  */
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useSearchParams, useRouter } from 'next/navigation'
 import { Menu } from 'lucide-react'
 import { ThemeSwitcher } from './ThemeSwitcher'
 import { SearchBar } from './SearchBar'
 import { MobileDrawer } from './MobileDrawer'
-import { useSearch } from '@/hooks/useSearch'
 
 
 export const Navbar = () => {
   const pathname = usePathname()
+  const searchParams = useSearchParams()
+  const router = useRouter()
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
-  const { query, handleSearch, clearSearch } = useSearch([])
+
+  // CRITICAL: Read query from URL, don't maintain local state
+  const currentQuery = searchParams.get('q') || ''
+
+  // Reason: Update URL when search changes
+  const handleSearch = (value: string) => {
+    const params = new URLSearchParams(searchParams.toString())
+
+    if (value.trim()) {
+      params.set('q', value)
+    } else {
+      params.delete('q')
+    }
+
+    // GOTCHA: Navigate to home page if not already there
+    // Reason: Search only works on home page where posts are available
+    const targetPath = pathname === '/' ? '/' : '/'
+    router.push(`${targetPath}?${params.toString()}`)
+  }
+
+  // Reason: Clear search by removing query param
+  const clearSearch = () => {
+    const params = new URLSearchParams(searchParams.toString())
+    params.delete('q')
+    router.push(`${pathname}?${params.toString()}`)
+  }
 
   const navItems = [
     { href: '/', label: '首頁' },
@@ -59,7 +88,7 @@ export const Navbar = () => {
             <SearchBar
               onSearch={handleSearch}
               onClear={clearSearch}
-              initialValue={query}
+              initialValue={currentQuery}
               className="navbar__search"
             />
 
@@ -91,7 +120,7 @@ export const Navbar = () => {
               }
             }}
             onClear={clearSearch}
-            initialValue={query}
+            initialValue={currentQuery}
           />
         </div>
 
