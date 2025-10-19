@@ -9,17 +9,56 @@
   margin-bottom: var(--spacing-8);
   border-left: 4px solid var(--color-brand-primary);
 
+  // Reason: Header contains title and toggle button
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-3);
+  }
+
   &__title {
     font-size: var(--font-size-lg);
     font-weight: var(--font-weight-semibold);
-    margin-bottom: var(--spacing-3);
+    margin: 0;
     color: var(--color-text-primary);
+  }
+
+  // Reason: Toggle button for collapse/expand
+  &__toggle {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text-secondary);
+    padding: var(--spacing-1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-base) var(--transition-timing-ease);
+
+    &:hover {
+      color: var(--color-brand-primary);
+      background-color: var(--color-bg-secondary);
+    }
+
+    &:focus {
+      outline: 2px solid var(--color-brand-primary);
+      outline-offset: 2px;
+    }
+
+    // Reason: Icon sizing
+    svg {
+      width: 20px;
+      height: 20px;
+    }
   }
 
   &__list {
     list-style: none;
     padding: 0;
     margin: 0;
+    animation: fadeIn 0.2s ease-in-out;
   }
 
   &__item {
@@ -46,5 +85,17 @@
     &:hover {
       color: var(--color-brand-primary);
     }
+  }
+}
+
+// Reason: Fade in animation for list expand
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

@@ -22,6 +22,7 @@ import remarkRehype from 'remark-rehype'
 import rehypeRaw from 'rehype-raw'
 import rehypeSlug from 'rehype-slug'
 import rehypeImagePath from './lib/rehype-image-path'
+import rehypeTableWrapper from './lib/rehype-table-wrapper'
 import rehypeStringify from 'rehype-stringify'
 
 /**
@@ -125,6 +126,7 @@ export default makeSource({
     builder.use(rehypeRaw) // Parse raw HTML nodes into the tree
     builder.use(rehypeSlug) // Add IDs to headings
     builder.use(rehypeImagePath) // Transform image paths
+    builder.use(rehypeTableWrapper) // Wrap tables in scrollable container
 
     // Convert HAST to HTML string
     builder.use(rehypeStringify)

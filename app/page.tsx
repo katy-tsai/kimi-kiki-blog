@@ -27,6 +27,7 @@ export default function HomePage() {
   const posts = getSortedPosts()
   const recommendedPosts = getRecommendedPosts(posts)
 
+  console.log('posts', posts);
 
   return (
     <Suspense fallback={<div>載入中...</div>}>

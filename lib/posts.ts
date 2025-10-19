@@ -46,6 +46,8 @@ export function getPostBySlug(slug: string): Post | undefined {
  * @returns Array of posts sorted by date descending
  */
 export function getSortedPosts(): Post[] {
+  console.log('allPosts', allPosts);
+
   return allPosts.sort((a, b) => {
     // Reason: Contentlayer auto-parses dates to Date objects
     const dateA = new Date(a.date).getTime()

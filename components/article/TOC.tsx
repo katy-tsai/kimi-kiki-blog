@@ -8,13 +8,15 @@
  * - Generates unique IDs for anchor links
  * - Renders hierarchical list
  * - Smooth scroll to sections
+ * - Collapsible/expandable toggle
  *
  * Reason: Helps users navigate long articles efficiently
  */
 
 'use client'
 
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
+import { ChevronDown, ChevronUp } from 'lucide-react'
 
 interface TOCProps {
   content: string // HTML string
@@ -34,23 +36,25 @@ interface Heading {
 function extractHeadings(html: string): Heading[] {
   const headings: Heading[] = []
 
-  // Reason: Use regex to extract headings (server-safe, no DOMParser)
-  const headingRegex = /<h([23])>(.*?)<\/h\1>/gi
+  // Reason: Match headings with or without id attributes
+  // Pattern: <h2 id="some-id">text</h2> OR <h2>text</h2>
+  const headingRegex = /<h([23])(?:\s+id="([^"]*)")?[^>]*>(.*?)<\/h\1>/gi
   let match
 
   while ((match = headingRegex.exec(html)) !== null) {
     const level = parseInt(match[1])
-    const text = match[2].replace(/<[^>]*>/g, '') // Strip HTML tags from text
+    const id = match[2] // ID from rehypeSlug (if present)
+    const text = match[3].replace(/<[^>]*>/g, '') // Strip HTML tags from text
 
-    // Reason: Generate URL-safe ID from heading text
-    const id = text
+    // Reason: Use existing ID from rehypeSlug, or generate one if missing
+    const finalId = id || text
       .toLowerCase()
       .replace(/\s+/g, '-')
       .replace(/[^\w\u4e00-\u9fa5\-]/g, '') // Support Chinese characters
       .substring(0, 50) // Limit length
 
-    if (text && id) {
-      headings.push({ id, text, level })
+    if (text && finalId) {
+      headings.push({ id: finalId, text, level })
     }
   }
 
@@ -60,32 +64,57 @@ function extractHeadings(html: string): Heading[] {
 /**
  * TOC Component
  *
- * Reason: Display navigable table of contents for blog posts
+ * Reason: Display navigable table of contents for blog posts with collapse/expand
  */
 export const TOC: React.FC<TOCProps> = ({ content }) => {
   // Reason: Use useMemo to avoid re-parsing on every render
   const headings = useMemo(() => extractHeadings(content), [content])
+
+  // Reason: Track collapse/expand state (default: expanded)
+  const [isExpanded, setIsExpanded] = useState(true)
 
   // Reason: Don't render TOC if no headings found
   if (headings.length === 0) {
     return null
   }
 
+  // Reason: Toggle function for collapse/expand
+  const toggleExpand = () => {
+    setIsExpanded(!isExpanded)
+  }
+
   return (
     <nav className="toc" aria-label="Table of Contents">
-      <h3 className="toc__title">📑 目錄</h3>
-      <ul className="toc__list">
-        {headings.map((heading) => (
-          <li
-            key={heading.id}
-            className={`toc__item toc__item--level-${heading.level}`}
-          >
-            <a href={`#${heading.id}`} className="toc__link">
-              {heading.text}
-            </a>
-          </li>
-        ))}
-      </ul>
+      <div className="toc__header">
+        <h3 className="toc__title">📑 目錄</h3>
+        <button
+          className="toc__toggle"
+          onClick={toggleExpand}
+          aria-expanded={isExpanded}
+          aria-label={isExpanded ? '收合目錄' : '展開目錄'}
+        >
+          {isExpanded ? (
+            <ChevronUp size={20} />
+          ) : (
+            <ChevronDown size={20} />
+          )}
+        </button>
+      </div>
+
+      {isExpanded && (
+        <ul className="toc__list">
+          {headings.map((heading) => (
+            <li
+              key={heading.id}
+              className={`toc__item toc__item--level-${heading.level}`}
+            >
+              <a href={`#${heading.id}`} className="toc__link">
+                {heading.text}
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
     </nav>
   )
 }

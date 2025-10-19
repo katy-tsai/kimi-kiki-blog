@@ -39,16 +39,29 @@ const rehypeImagePath: Plugin<[], Root> = () => {
     visit(tree, 'element', (node: Element) => {
       // FIND: <img> elements with src attribute
       if (node.tagName === 'img' && node.properties?.src) {
-        const src = node.properties.src as string
+        let src = node.properties.src as string
 
-        // TRANSFORM: Replace /public/images/ with /images/
-        // Reason: Next.js serves /public as root, so /public/images/ → /images/
-        if (src.startsWith('/public/images/')) {
-          node.properties.src = src.replace('/public/images/', '/images/')
+        // TRANSFORM: Handle multiple path formats and convert to Next.js format
+        // Reason: Different tools may generate different path formats
 
-          // GOTCHA: Also handle URL-encoded paths (e.g., %20 for spaces)
-          // Example: /public/images/my%20image.png → /images/my%20image.png
+        // Format 1: ../../public/images/ (relative path from content folder)
+        if (src.startsWith('../../public/images/')) {
+          src = src.replace('../../public/images/', '/images/')
         }
+        // Format 2: /public/images/ (absolute path with /public)
+        else if (src.startsWith('/public/images/')) {
+          src = src.replace('/public/images/', '/images/')
+        }
+        // Format 3: public/images/ (without leading slash)
+        else if (src.startsWith('public/images/')) {
+          src = src.replace('public/images/', '/images/')
+        }
+
+        // Update the src attribute
+        node.properties.src = src
+
+        // GOTCHA: URL-encoded paths (e.g., %20 for spaces) are preserved
+        // Example: /public/images/my%20image.png → /images/my%20image.png
       }
     })
   }
