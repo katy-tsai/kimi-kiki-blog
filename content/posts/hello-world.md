@@ -8,7 +8,7 @@ tags:
 author:
   name: kimi-kiki
   avatar: /images/avatar.jpg
-featured: true
+featured: false
 ---
 
 ## Hello World

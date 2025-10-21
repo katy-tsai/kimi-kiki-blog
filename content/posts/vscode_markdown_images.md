@@ -9,6 +9,7 @@ tags:
 author:
   name: kimi-kiki
   avatar: /images/avatar.jpg
+featured: true
 ---
 
 > 自從用AI 建立Next.js + Markdown的部落格後，發現在Vscode 寫 Markdown 很方便，但卻仍然有一些痛點，每次插圖，都需存檔然後移動到public/images的資料夾,再手動打 Markdown的語法，實在太麻煩了，所以又想問問AI 是否有辦法解決這個問題

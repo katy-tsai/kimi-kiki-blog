@@ -9,7 +9,7 @@ tags:
 author: 
   name: kimi-kiki
   link: /images/avatar.jpg
-featured: false
+featured: true
 ---
 
 >因為常常忘記朋友的生日，我決定動手做一個「生日提醒助理」。順便練習 n8n 自動化流程，於是我設計了一個系統：把生日資料儲存在 Google Sheet，每天早上 8 點自動檢查是否有人生日，一旦有人生日，就透過 LINE 傳送通知給自己。
@@ -64,7 +64,7 @@ featured: false
     #### step8: 搜尋Google Sheets Api
     ![搜尋Google sheets](/public/images/20251020-180044.png)
     #### step9: 啟用Google Sheets Api
-    ![啟用Google Sheets(/public/images/20251020-180112.png)
+    ![啟用Google Sheets](/public/images/20251020-180112.png)
 
 - Sign in with Google
 ![Sign in with Google](/public/images/20251020-181538.png)
