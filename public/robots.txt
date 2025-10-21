@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://kimi-kiki-blog.vercel.app
+
+# Sitemaps
+Sitemap: https://kimi-kiki-blog.vercel.app/sitemap.xml

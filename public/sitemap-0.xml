@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+<url><loc>https://kimi-kiki-blog.vercel.app</loc><lastmod>2025-10-21T04:07:26.874Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://kimi-kiki-blog.vercel.app/contact</loc><lastmod>2025-10-21T04:07:26.874Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://kimi-kiki-blog.vercel.app/tags/AI</loc><lastmod>2025-10-21T04:07:26.874Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://kimi-kiki-blog.vercel.app/tags/Blog</loc><lastmod>2025-10-21T04:07:26.874Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://kimi-kiki-blog.vercel.app/tags/Cloude Code</loc><lastmod>2025-10-21T04:07:26.874Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://kimi-kiki-blog.vercel.app/tags/Frontend</loc><lastmod>2025-10-21T04:07:26.874Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://kimi-kiki-blog.vercel.app/tags/General</loc><lastmod>2025-10-21T04:07:26.874Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://kimi-kiki-blog.vercel.app/tags/Image</loc><lastmod>2025-10-21T04:07:26.874Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://kimi-kiki-blog.vercel.app/tags/Line Messaging API</loc><lastmod>2025-10-21T04:07:26.874Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://kimi-kiki-blog.vercel.app/tags/Markdown</loc><lastmod>2025-10-21T04:07:26.874Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://kimi-kiki-blog.vercel.app/tags/n8n</loc><lastmod>2025-10-21T04:07:26.874Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://kimi-kiki-blog.vercel.app/tags/PlantUML</loc><lastmod>2025-10-21T04:07:26.874Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://kimi-kiki-blog.vercel.app/tags/Railway</loc><lastmod>2025-10-21T04:07:26.874Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://kimi-kiki-blog.vercel.app/tags/Test</loc><lastmod>2025-10-21T04:07:26.874Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://kimi-kiki-blog.vercel.app/tags/VsCode</loc><lastmod>2025-10-21T04:07:26.874Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://kimi-kiki-blog.vercel.app/about</loc><lastmod>2025-10-21T04:07:26.874Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://kimi-kiki-blog.vercel.app/tags</loc><lastmod>2025-10-21T04:07:26.874Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://kimi-kiki-blog.vercel.app/posts/claude-make-blog</loc><lastmod>2025-10-21T04:07:26.874Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://kimi-kiki-blog.vercel.app/posts/hello-world</loc><lastmod>2025-10-21T04:07:26.874Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://kimi-kiki-blog.vercel.app/posts/line_message_apply</loc><lastmod>2025-10-21T04:07:26.874Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://kimi-kiki-blog.vercel.app/posts/markdown_snippet</loc><lastmod>2025-10-21T04:07:26.874Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://kimi-kiki-blog.vercel.app/posts/n8n_birthday_notify</loc><lastmod>2025-10-21T04:07:26.874Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://kimi-kiki-blog.vercel.app/posts/railway_deploy_n8n</loc><lastmod>2025-10-21T04:07:26.874Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://kimi-kiki-blog.vercel.app/posts/test-plantuml</loc><lastmod>2025-10-21T04:07:26.874Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://kimi-kiki-blog.vercel.app/posts/vscode_markdown_images</loc><lastmod>2025-10-21T04:07:26.874Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+</urlset>
