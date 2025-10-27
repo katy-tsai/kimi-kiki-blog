@@ -36,19 +36,18 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
       <Link href={`/posts/${post.slug}`} className="article-card__link">
         <h2 className="article-card__title">{post.title}</h2>
         <p className="article-card__excerpt">{post.excerpt}</p>
-
-        <div className="article-card__meta">
-          <div className="article-card__tags">
-            {post.tags.map((tag) => (
-              <TagBadge key={tag} tag={tag} />
-            ))}
-          </div>
-          <div className="article-card__info">
-
-            <time className="article-card__date">{formattedDate}</time>
-          </div>
-        </div>
       </Link>
+
+      <div className="article-card__meta">
+        <div className="article-card__tags">
+          {post.tags.map((tag) => (
+            <TagBadge key={tag} tag={tag} asLink />
+          ))}
+        </div>
+        <div className="article-card__info">
+          <time className="article-card__date">{formattedDate}</time>
+        </div>
+      </div>
     </article>
   )
 }

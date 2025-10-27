@@ -13,7 +13,7 @@
  */
 
 import type { Metadata } from 'next'
-import { Github, Twitter, Linkedin } from 'lucide-react'
+import { Mail } from 'lucide-react'
 import { Sidebar } from '@/components/layout/Sidebar'
 import { getAllTags, getSortedPosts, getRecommendedPosts } from '@/lib/posts'
 
@@ -22,10 +22,14 @@ export const metadata: Metadata = {
   description: '關於 kimi-kiki - 技術分享與學習',
 }
 
-export default async function AboutPage() {
+// CRITICAL: Enable static generation
+// Reason: Pre-render at build time for instant page loads
+export const dynamic = 'force-static'
+
+export default function AboutPage() {
   // Reason: Get data for sidebar
-  const allTags = await getAllTags()
-  const posts = await getSortedPosts()
+  const allTags = getAllTags()
+  const posts = getSortedPosts()
   const recommendedPosts = getRecommendedPosts(posts)
   const techStack = [
     'React',
@@ -75,8 +79,7 @@ export default async function AboutPage() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Github size={20} />
-              <span>GitHub</span>
+              <span>🐙 GitHub</span>
             </a>
             <a
               href="https://linkedin.com/in/kimi-kiki"
@@ -84,17 +87,15 @@ export default async function AboutPage() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Linkedin size={20} />
-              <span>LinkedIn</span>
+              <span>💼 LinkedIn</span>
             </a>
             <a
-              href="https://twitter.com/kimi-kiki"
-              className="about__social-btn about__social-btn--twitter"
-              target="_blank"
+              href="mailto:contact@kimi-kiki.dev"
+              className="about__social-btn about__social-btn--email"
               rel="noopener noreferrer"
             >
-              <Twitter size={20} />
-              <span>Twitter</span>
+              <Mail size={20} />
+              <span>Email</span>
             </a>
           </div>
         </section>

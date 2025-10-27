@@ -12,7 +12,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postbuild": "next-sitemap"
+    "postbuild": "next-sitemap",
+    "test:seo": "bash scripts/test-seo.sh"
   },
   "keywords": [],
   "author": "katy <katytsai.git@gmail.com>",

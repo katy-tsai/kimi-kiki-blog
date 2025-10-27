@@ -63,8 +63,19 @@ export async function generateMetadata({
     title: post.title,
     description: post.excerpt,
     keywords: post.tags,
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      type: 'article',
+      publishedTime: post.date,
+      tags: post.tags,
+    },
   }
 }
+
+// CRITICAL: Enable static generation
+// Reason: Pre-render all blog posts at build time for instant page loads and SEO
+export const dynamic = 'force-static'
 
 /**
  * Post Detail Page Component

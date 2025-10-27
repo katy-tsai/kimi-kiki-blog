@@ -52,7 +52,11 @@ export const Sidebar: React.FC<SidebarProps> = ({ tags, recommendedPosts }) => {
           <h3 className="sidebar__title">🔥 熱門標籤</h3>
           <div className="sidebar__tags">
             {tags.slice(0, 8).map((tag) => (
-              <Link key={tag} href={`/tags/${tag}`} className="sidebar__tag-link">
+              <Link
+                key={tag}
+                href={`/tags/${encodeURIComponent(tag)}`}
+                className="sidebar__tag-link"
+              >
                 <TagBadge tag={tag} />
               </Link>
             ))}

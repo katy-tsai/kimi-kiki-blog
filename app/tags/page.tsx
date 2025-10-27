@@ -23,6 +23,10 @@ export const metadata: Metadata = {
   description: '瀏覽所有文章標籤',
 }
 
+// CRITICAL: Enable static generation
+// Reason: Pre-render at build time for instant page loads
+export const dynamic = 'force-static'
+
 export default function TagsPage() {
   const allTags = getAllTags()
   const allPosts = getAllPosts()
@@ -54,7 +58,11 @@ export default function TagsPage() {
 
         <div className="tags-grid">
           {tagCounts.map(({ tag, count }) => (
-            <Link key={tag} href={`/tags/${tag}`} className="tag-card">
+            <Link
+              key={tag}
+              href={`/tags/${encodeURIComponent(tag)}`}
+              className="tag-card"
+            >
               <div className="tag-card__badge">
                 <TagBadge tag={tag} />
               </div>

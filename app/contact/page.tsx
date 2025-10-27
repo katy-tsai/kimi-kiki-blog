@@ -23,10 +23,14 @@ export const metadata: Metadata = {
   description: '聯絡 kimi-kiki - 合作洽詢與交流',
 }
 
-export default async function ContactPage() {
+// CRITICAL: Enable static generation
+// Reason: Pre-render at build time for instant page loads
+export const dynamic = 'force-static'
+
+export default function ContactPage() {
   // Reason: Get data for sidebar
-  const allTags = await getAllTags()
-  const posts = await getSortedPosts()
+  const allTags = getAllTags()
+  const posts = getSortedPosts()
   const recommendedPosts = getRecommendedPosts(posts)
 
   return (

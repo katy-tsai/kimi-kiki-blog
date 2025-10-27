@@ -26,24 +26,27 @@ interface TagPageProps {
 /**
  * Generate static params for all tags
  *
+ * CRITICAL: URL encode tags to handle spaces and special characters
  * Reason: Pre-render all tag pages at build time
  */
 export function generateStaticParams() {
   const tags = getAllTags()
   return tags.map((tag) => ({
-    tag,
+    tag: encodeURIComponent(tag),
   }))
 }
 
 /**
  * Generate metadata for SEO
  *
+ * CRITICAL: Decode tag for display in metadata
  * Reason: Dynamic metadata for tag pages
  */
 export async function generateMetadata({
   params,
 }: TagPageProps): Promise<Metadata> {
-  const { tag } = await params
+  const { tag: encodedTag } = await params
+  const tag = decodeURIComponent(encodedTag)
 
   return {
     title: `標籤: ${tag}`,
@@ -51,11 +54,20 @@ export async function generateMetadata({
   }
 }
 
+// CRITICAL: Enable static generation
+// Reason: Pre-render all tag pages at build time for instant page loads
+export const dynamic = 'force-static'
+
 export default async function TagPage({ params }: TagPageProps) {
-  const { tag } = await params
+  const { tag: encodedTag } = await params
+
+  // CRITICAL: Decode URL-encoded tag to match original tag names
+  // Reason: Tags with spaces are URL-encoded (e.g., "Claude Code" -> "Claude%20Code")
+  const tag = decodeURIComponent(encodedTag)
+
   const allPosts = getAllPosts()
 
-  // Reason: Filter posts by tag
+  // Reason: Filter posts by decoded tag
   const filteredPosts = allPosts.filter((post) => post.tags.includes(tag))
 
   // Reason: Sort by date
