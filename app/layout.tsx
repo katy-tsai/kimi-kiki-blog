@@ -12,7 +12,7 @@ import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
 import View from '@/components/layout/View'
 import './globals.scss'
-
+import { SpeedInsights } from "@vercel/speed-insights/next"
 export const metadata: Metadata = {
   title: {
     default: 'kimi-kiki Blog | 技術分享',
@@ -33,6 +33,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="zh-TW" suppressHydrationWarning>
+      <SpeedInsights />
       <body suppressHydrationWarning>
         <Suspense fallback={<div style={{ height: 'var(--navbar-height)' }} />}>
           <Navbar />
