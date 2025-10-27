@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   keywords: ['技術部落格', 'React', 'TypeScript', 'AI', 'Next.js'],
   authors: [{ name: 'kimi-kiki' }],
   verification: {
-    google: '4soaWqzybN2d3WuiZAa0EMYgZKw3BQ1dKMvEX2hA-LQ',
+    google: '4soaWqzybN2d3WuiZAa0EMYgZKw3BQ1dK',
   },
 }
 
