@@ -21,6 +21,9 @@ export const metadata: Metadata = {
   description: '分享程式開發、AI 技術與學習心得',
   keywords: ['技術部落格', 'React', 'TypeScript', 'AI', 'Next.js'],
   authors: [{ name: 'kimi-kiki' }],
+  verification: {
+    google: '4soaWqzybN2d3WuiZAa0EMYgZKw3BQ1dKMvEX2hA-LQ',
+  },
 }
 
 export default function RootLayout({

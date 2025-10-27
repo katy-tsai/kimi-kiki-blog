@@ -143,7 +143,17 @@ featured: true
 ![Schedule Trigger](/public/images/20251021-154148.png)
 
 2. 設定排程為每天早上8點做一次 
-   ![設定排程](/public/images/20251021-154445.png)
+> 每天早上 8 點定時檢查 , 設定可參考[https://crontab.guru/examples.html](https://crontab.guru/examples.html) -> 0 8 * * *
 
-3. 將生日檔案今天生日的測試檔案改成明天，明天收到line訊息通知就成功囉
+   ![設定排程](/public/images/20251022-101208.png)
+
+3. 儲存設定，並開啟工作流
+   - 在開啟工作流前，記得更改工作流的時區
+   ![工作流設定](/public/images/20251022-101524.png)
+![更改時後](../../public/images/image-6.png)
+
+>節點依賴時區設定。n8n 使用工作流程時區（如果已設定）或 n8n 實例時區（如果未設定工作流程時區）。
+默認時區：自託管實例為 America/New York，n8n Cloud 嘗試檢測實例所有者的時區，默認為 GMT
+
+4. 將生日檔案今天生日的測試檔案改成明天，明天收到line訊息通知就成功囉
  ![workflow](/public/images/20251021-160304.png)
