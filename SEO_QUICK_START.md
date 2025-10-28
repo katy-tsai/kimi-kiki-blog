@@ -180,13 +180,13 @@ JavaScript 載入後啟用互動功能
 
 ## 📁 關鍵檔案說明
 
-| 檔案 | 類型 | 說明 |
-|------|------|------|
-| [app/page.tsx](app/page.tsx) | Server Component | 首頁，直接渲染文章列表 |
-| [app/posts/[slug]/page.tsx](app/posts/[slug]/page.tsx) | Server Component | 文章詳情頁，使用 SSG |
-| [components/article/ArticleList.tsx](components/article/ArticleList.tsx) | Server Component | 文章列表元件 |
-| [components/search/SearchWrapper.tsx](components/search/SearchWrapper.tsx) | Client Component | 搜尋功能（漸進增強）|
-| [lib/posts.ts](lib/posts.ts) | Utility | 文章資料處理函數 |
+| 檔案                                                                       | 類型             | 說明                   |
+| -------------------------------------------------------------------------- | ---------------- | ---------------------- |
+| [app/page.tsx](app/page.tsx)                                               | Server Component | 首頁，直接渲染文章列表 |
+| [app/posts/[slug]/page.tsx](app/posts/[slug]/page.tsx)                     | Server Component | 文章詳情頁，使用 SSG   |
+| [components/article/ArticleList.tsx](components/article/ArticleList.tsx)   | Server Component | 文章列表元件           |
+| [components/search/SearchWrapper.tsx](components/search/SearchWrapper.tsx) | Client Component | 搜尋功能（漸進增強）   |
+| [lib/posts.ts](lib/posts.ts)                                               | Utility          | 文章資料處理函數       |
 
 ---
 
